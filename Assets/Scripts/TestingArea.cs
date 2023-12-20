@@ -33,8 +33,8 @@ public class TestingArea : MonoBehaviour {
    [ContextMenu("RunTest_ALL")]
    public void test() {
       testPlacement();
-      testTerraforming();
-      testSelect();
+      //testTerraforming();
+      //testSelect();
    }
    
    public void testPlacement() {

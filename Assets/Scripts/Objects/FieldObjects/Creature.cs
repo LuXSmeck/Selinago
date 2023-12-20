@@ -91,7 +91,7 @@ public class Creature : FieldObject{
         if (damage < armor){
             armor -= (int)damage / 2;
         } else if (damage /2 > armor){
-            damage -=
+            damage -= 0; //TODO
         }
         life -= (int) Math.Ceiling(damage);
  

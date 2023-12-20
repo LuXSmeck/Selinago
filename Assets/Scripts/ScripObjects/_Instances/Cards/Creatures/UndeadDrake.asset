@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87aa7cfd98274176935978aaa9974479, type: 3}
+  m_Name: UndeadDrake
+  m_EditorClassIdentifier: 
+  cardName: Untoter Drache
+  cardText: undead Fluff
+  cost: 8
+  creatureModel: {fileID: 0}
+  creatureType: {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
+  classType: {fileID: 11400000, guid: 2040a881f2f659d4a986c1823612c705, type: 2}
+  attackType: {fileID: 11400000, guid: 88c50539a94f01e46bf7e6f4293b55f2, type: 2}
+  hp: 1000
+  atk: 100
+  def: 50
+  hybridType: {fileID: 11400000, guid: 7efcd23ba960fa648a8d208da4640532, type: 2}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f9c491b5-ea08-40b3-9de3-71e433ade73b" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TestingArea.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Objects/GameBoard/Field.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/CreatureCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Types/FieldType.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/EquipmentCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Types/EquipType.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Types/WeaponType.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/WeaponCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Abstracts/Card.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/HybridCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/InstantEffect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Abstracts/Effect.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enums/CardTypeEnum.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/FieldCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Abstracts/EquipableCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Objects/Creature.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Objects/Field.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScripObjects/Cards/CreatureCard.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/TestingArea.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/CardManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Objects/GameBoard/Grid.cs" />
+    </changedPaths>
+  </component>
+  <component name="ProjectId" id="2669YfbIx2ih32vJl5I5ybQuTyO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35015383" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9c491b5-ea08-40b3-9de3-71e433ade73b" name="Changes" comment="" />
+      <created>1646733222469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1646733222469</updated>
+      <workItem from="1646733261949" duration="4955000" />
+      <workItem from="1646828830412" duration="821000" />
+      <workItem from="1646842395951" duration="1280000" />
+      <workItem from="1646843718790" duration="5237000" />
+      <workItem from="1651831782911" duration="1375000" />
+      <workItem from="1652172186935" duration="5599000" />
+      <workItem from="1652183070084" duration="544000" />
+      <workItem from="1652197279750" duration="7000" />
+      <workItem from="1652202533625" duration="604000" />
+      <workItem from="1652257477679" duration="2175000" />
+      <workItem from="1654231645276" duration="17215000" />
+      <workItem from="1654702860937" duration="8227000" />
+      <workItem from="1654753189028" duration="10522000" />
+      <workItem from="1654853708795" duration="7405000" />
+      <workItem from="1655197038965" duration="3913000" />
+      <workItem from="1655215900396" duration="2003000" />
+      <workItem from="1655270608293" duration="8030000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

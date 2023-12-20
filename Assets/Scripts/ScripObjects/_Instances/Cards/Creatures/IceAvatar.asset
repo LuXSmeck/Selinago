@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1517a23afb1cb4da05a697a7bd3a98, type: 3}
+  m_Name: IceAvatar
+  m_EditorClassIdentifier: 
+  cardName: Avatar of Ice
+  cardText: icy Fluff
+  cost: 4
+  creatureType: {fileID: 11400000, guid: 0eb04e85db798ae448731577d9a51d09, type: 2}
+  classType: {fileID: 11400000, guid: 0429eddc727e2d443b15b730c43f610c, type: 2}
+  attackType: {fileID: 11400000, guid: 0429eddc727e2d443b15b730c43f610c, type: 2}
+  hp: 500
+  atk: 10
+  def: 10

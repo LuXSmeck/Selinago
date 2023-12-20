@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Dessert
+  m_EditorClassIdentifier: Assembly-CSharp::TerrainFeature
+  terrainName: 
+  color: {r: 0.7075472, g: 0.70510805, b: 0.13683695, a: 1}
+  accessibility: 1
+  buildability: 0
+  blocking: 0

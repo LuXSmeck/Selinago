@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319618f8fff2cad4bae4e704b4dabae9, type: 3}
+  m_Name: Mountains
+  m_EditorClassIdentifier: 
+  id: 11
+  cardName: 
+  cardText: 
+  level: 0
+  limited: 2147483647
+  affectionRange: 2
+  terrain: {fileID: 11400000, guid: 9c33257ab2b8c584ca23fee2a91e24dc, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edab5933da00a0b4c9d224cc4e2636fb, type: 3}
+  m_Name: Mecanoid
+  m_EditorClassIdentifier: 
+  description: Machines and other metalic or mechanical build Creatures.
+  elementalWeaknesses:
+  - {fileID: 11400000, guid: 88c50539a94f01e46bf7e6f4293b55f2, type: 2}
+  - {fileID: 11400000, guid: 4cf1a48d61a48944e96a8440aa88ae60, type: 2}
+  - {fileID: 11400000, guid: 833295dbf7d31aa4a96ea60095b10f7b, type: 2}
+  - {fileID: 11400000, guid: dec55a63216c87e4c880f52186b58987, type: 2}
+  elementalResistances:
+  - {fileID: 11400000, guid: 66c23f7740b229b40af7be91e7e75d41, type: 2}
+  elementalImmunities:
+  - {fileID: 11400000, guid: 7ebb1eb4c397bb247aa191a304ead441, type: 2}
+  - {fileID: 11400000, guid: 0f34a89f1046aea49953818f03437790, type: 2}

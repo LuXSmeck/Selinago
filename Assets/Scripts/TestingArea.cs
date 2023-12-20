@@ -39,10 +39,10 @@ public class TestingArea : MonoBehaviour {
    
    public void testPlacement() {
       Debug.LogAssertion("***** Creature Placing: RED Labels ***** ");
-      cardManager.cardSlots[0].placeCard(myMonsters[0], 1, 1);
-      cardManager.cardSlots[1].placeCard(myMonsters[1], 1, 2);
+      cardManager.cardSlots[0].placeCard(myMonsters[0], 2, 1);
+      cardManager.cardSlots[1].placeCard(myMonsters[1], 2, 2);
       cardManager.cardSlots[2].placeCard(myMonsters[2], 4, 4);
-      cardManager.cardSlots[3].placeCard(myMonsters[0], 2, 1);
+      cardManager.cardSlots[3].placeCard(myMonsters[0], 3, 1);
    }
 
    [ContextMenu("ErrorTest_Placement")]
@@ -52,7 +52,7 @@ public class TestingArea : MonoBehaviour {
       cardManager.cardSlots[1].placeCard(myMonsters[3], 4, 1);
       cardManager.cardSlots[2].placeCard(myMonsters[3], 4, 2);
       Debug.Log("Same Field");
-      cardManager.cardSlots[4].placeCard(myMonsters[4], 1, 2);
+      cardManager.cardSlots[4].placeCard(myMonsters[4], 2, 2);
       cardManager.cardSlots[5].placeCard(myMonsters[4], 4, 4);
    }
 
@@ -103,16 +103,8 @@ public class TestingArea : MonoBehaviour {
       Debug.LogAssertion("***** Fight ***** ");
       cardManager.setSelectedField(cardManager.cardSlots[myCardSlotId]);
       Field defendingField = cardManager.cardSlots[targetCardSlotId].fieldReference;
-      int result = cardManager.tryAttackingCreatureAt(defendingField);
-      switch (result) {
-         case 0: Debug.Log("Fight is possible");
-            cardManager.confirmAttack(defendingField.getCreature());
-            break;
-         case 1: Debug.Log("Fight is not possible: Target is out of Range");
-            break;
-         default: Debug.Log("Fight is not possible);");
-            break;
-      }
+      
+      cardManager.initializeAttack(defendingField);
    }
 
    

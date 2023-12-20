@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PathFinder {
@@ -27,10 +28,12 @@ public class PathFinder {
    public List<Field> findCreatureFieldsInRange(Field startField, int range) {
       List<Field> openList = new List<Field> { startField };
       List<Field> closedList = new List<Field>();
+      
       Field targetField;
       Vector2 position;
       int x,y;
 
+      //find all non-Blocking-Fields in Range.
       for (int i = range; i > 0; i--) {
          List<Field> nextList = new List<Field>();
          while (openList.Count > 0) {
@@ -71,7 +74,8 @@ public class PathFinder {
             closedList.Add(field);
             openList.Remove(field);
          }
-         openList = nextList;
+         
+         openList = nextList.Distinct().ToList();
       }
 
       //Limit reached

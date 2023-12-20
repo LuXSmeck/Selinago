@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a1517a23afb1cb4da05a697a7bd3a98, type: 3}
   m_Name: FireAvatar
   m_EditorClassIdentifier: 
+  id: 13
   cardName: Avatar of Fire
   cardText: burning Fluff
-  cost: 3
+  level: 0
+  limited: 2147483647
+  creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: 0eb04e85db798ae448731577d9a51d09, type: 2}
   classType: {fileID: 11400000, guid: 6bf041d74be99df42a1e5ff84ae5a3dd, type: 2}
   attackType: {fileID: 11400000, guid: 6bf041d74be99df42a1e5ff84ae5a3dd, type: 2}
+  hp: 0
+  atk: 0
+  def: 0
+  attackEffects:
+  - {fileID: 11400000, guid: 3618f6fcf078b1a4fb7ab2f1072f2562, type: 2}

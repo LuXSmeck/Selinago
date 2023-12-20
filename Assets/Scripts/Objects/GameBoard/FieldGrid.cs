@@ -117,9 +117,10 @@ public class FieldGrid : MonoBehaviour {
       if (startField.isOccupied()) {
          Creature creature = startField.getCreature();
 
-         AttackEffect effect = creature.getAttackEffects(AttackEffectTypeEnum.Range);
+         AAttackEffect effect = creature.getAttackEffects(AttackEffectTypeEnum.RANGE);
          if (effect != null){
-            range = effect.Value;
+            RangeEffect rangeEffect = (RangeEffect)effect; 
+            range = rangeEffect.Value;
          }
       }
       List<Field> attackableFields = pathFinder.findCreatureFieldsInRange(startField, range);

@@ -69,6 +69,43 @@ public class CardManager : MonoBehaviour {
    }
 
    //*********************************************************************** Card Interactions
+   public void initializeAttack(Field defenderField){
+      Field attackerField = selectedField;
+      
+      int result = tryAttackingCreatureAt(attackerField, defenderField);
+      switch (result) {
+         case 0:  Debug.Log("Fight is possible");
+                  Creature attacker = attackerField.getCreature();
+                  Creature defender = defenderField.getCreature();
+                  attacker.attack(defender);
+                  revengeAttack(attackerField, defenderField);
+                  break;
+         case 1:  Debug.Log("Fight is not possible: Target is out of Range");
+                  break;
+         default: Debug.Log("Fight is not possible);");
+                  break;
+      }
+   }
+   
+   private void revengeAttack(Field oldAttackerField, Field oldDefenderField){
+      Field attackerField = oldDefenderField;
+      Field defenderField = oldAttackerField;
+      
+      int result = tryAttackingCreatureAt(attackerField, defenderField);
+      switch (result) {
+         case 0:  Debug.Log("Revenge is possible");
+                  Creature attacker = attackerField.getCreature();
+                  Creature defender = defenderField.getCreature();
+                  attacker.attack(defender);
+                  break;
+         case 1:  Debug.Log("Revenge is not possible: Target is out of Range");
+                  break;
+         default: Debug.Log("Revenge is not possible);");
+                  break;
+      }
+   }
+   
+   
    /// <summary> Checks if there is a creature in both given Fields and
    /// if the attacking Creature is able to attack the defending one. </summary>
    /// <param name="attackerField"> Field of the attacking Creature </param>
@@ -76,11 +113,11 @@ public class CardManager : MonoBehaviour {
    /// <returns> 0 if the attack is possible;
    ///           1 if the target is not reachable for the attacker;
    ///           2 if there are not 2 creatures in the given Fields. </returns>
-   public int tryAttackingCreatureAt(Field defenderField){
-      if (selectedField.isOccupied() && defenderField.isOccupied()){
+   private int tryAttackingCreatureAt(Field attackerField, Field defenderField){
+      if (attackerField.isOccupied() && defenderField.isOccupied()){
 
          grid.resetHighlighting();
-         grid.highlightAttackPossibilities(selectedField);
+         grid.highlightAttackPossibilities(attackerField);
          
          if (grid.isHighlighted(defenderField)){
             return 0;
@@ -92,13 +129,6 @@ public class CardManager : MonoBehaviour {
          Debug.LogAssertion("Invalid Field-Selection");
          return 2;
       }
-   }
-   
-   /// <summary> Moves the Creature from the active Field and places itself on the target location.
-   /// There are no validation-checks at all! </summary>
-   /// <param name="target"> The targeted Creature </param>
-   public void confirmAttack(Creature target) {
-      selectedField.getCreature().attack(target);
    }
 
    /// <summary> Checks if the Creature in the selectedField is able to move towards the given Location.

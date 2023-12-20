@@ -8,26 +8,25 @@ using Object = UnityEngine.Object;
 public class Creature : AFieldObject{
 
     [Header("Card Attributes")]
-    [SerializeField] private CreatureCard cardReference;
-    [SerializeField] private CardSlot cardSlot;
+    [SerializeField] protected CreatureCard cardReference;
+    [SerializeField] protected CardSlot cardSlot;
     
     [Header("Creature Attributes")]
-    [SerializeField] private int life;
-    [SerializeField] private int strength;
-    [SerializeField] private int armor;
-    [SerializeField] private int movement;
-    [SerializeField] private CreatureStateEnum state;
+    [SerializeField] private   int strength;
+    [SerializeField] protected int armor;
+    [SerializeField] private   int movement;
+    [SerializeField] protected CreatureStateEnum state;
     
     [Header("Creature Effects")]
-    [SerializeField] private List<AttackEffect> attackEffects;
+    [SerializeField] private List<AAttackEffect> attackEffects;
     
     public void initialize(CardSlot cardSlot){
         this.cardSlot = cardSlot;
         cardReference = (CreatureCard)cardSlot.cardReference;
 
-        life     = cardReference.Hp;
-        strength = cardReference.Atk;
-        armor    = cardReference.Def;
+        strength      = cardReference.Atk;
+        armor         = cardReference.Def;
+        attackEffects = cardReference.AttackEffects;
         
         movement = cardReference.getLevel();
         if (movement > 8){
@@ -78,22 +77,23 @@ public class Creature : AFieldObject{
     public void attack(Creature enemy){
         Debug.Log(cardReference.getName() +" is attacking "+ enemy.cardReference.getName());
         
-        //TODO DMG calculation
         // DMG results in BaseStr * weaknessMod 
         double damage = strength;
-        Debug.Log(" The Attack starts at InitialDamge: "+ damage);
         damage *= enemy.cardReference.checkWeakness(cardReference.AttackType);
-        Debug.Log(cardReference.getName() +" takes RealDamge: "+ damage);
+        Debug.Log(" The Attack starts at InitialDamge: "+ strength +" -> "+ damage +"Damge after resisting");
 
         enemy.takeDamage(damage, this);
     }
 
     public void takeDamage(double incommingDamage, Creature attacker){
-        armor -= (int) Math.Ceiling(incommingDamage/2);
         if (incommingDamage >= armor){
             double finalDamage = incommingDamage - armor;
+            armor     -= (int) Math.Ceiling(incommingDamage/2);
+            strength  -= (int) finalDamage;
+            Debug.Log(" The Attack penetrated the Armor of "+ cardReference.getName() +" and lowered the strength by"+ finalDamage);
+        }else{
             armor -= (int) Math.Ceiling(incommingDamage/2);
-            life  -= (int) finalDamage;
+            Debug.Log(" The Attack didn't penetrated the Armor of "+ cardReference.getName() +" but lowered it by"+ (int) Math.Ceiling(incommingDamage/2));
         }
  
         checkLife();
@@ -101,7 +101,7 @@ public class Creature : AFieldObject{
     
     //************************************************************** private Methods
     private void checkLife(){
-        if (life <= 0){
+        if (strength + armor <= 0){
             state = CreatureStateEnum.DEAD;
             Debug.Log(cardReference.getName() +" failted");
         }
@@ -120,8 +120,8 @@ public class Creature : AFieldObject{
     /// that is from the given TYPE. </summary>
     /// <param name="type"></param>
     /// <returns> NULL if there is no such Effect. </returns>
-    public AttackEffect getAttackEffects(AttackEffectTypeEnum type){
-        AttackEffect result = null;
+    public AAttackEffect getAttackEffects(AttackEffectTypeEnum type){
+        AAttackEffect result = null;
         int i = attackEffects.Count-1;
         while (result == null && i >= 0){
             if (attackEffects[i].Type == type){

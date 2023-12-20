@@ -610,8 +610,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6e9c18154c2e12479b48b35b9d8e796, type: 2}
   - {fileID: 11400000, guid: 58c0c10e2accb1e4c9a8a8d0b24d6146, type: 2}
   - {fileID: 11400000, guid: 70ccf680b60a66b4da7233b115f453ba, type: 2}
-  myCardSlotId: 0
-  targetCardSlotId: 1
+  myCardSlotId: 1
+  targetCardSlotId: 2
   targetX: 3
   targetY: 0
 --- !u!114 &1931002929

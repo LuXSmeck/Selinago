@@ -23,7 +23,7 @@ public class CreatureCard : PlacableCard {
    [SerializeField] private int def;
 
    [Header("Creature Effects")]
-   [SerializeField] private List<AttackEffect> attackEffects;
+   [SerializeField] private List<AAttackEffect> attackEffects;
    
    /// <summary>
    ///     Checks how many damage an Attack of the given Type would do,
@@ -88,5 +88,5 @@ public class CreatureCard : PlacableCard {
 
    public int Def => def;
 
-   public List<AttackEffect> AttackEffects => attackEffects;
+   public List<AAttackEffect> AttackEffects => attackEffects;
 }

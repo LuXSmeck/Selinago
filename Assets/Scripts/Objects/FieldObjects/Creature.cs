@@ -89,12 +89,11 @@ public class Creature : AFieldObject{
     }
 
     public void takeDamage(double incommingDamage, Creature attacker){
-        if (incommingDamage < armor){
-            armor -= (int) Math.Ceiling(incommingDamage/2);
-        } else{
+        armor -= (int) Math.Ceiling(incommingDamage/2);
+        if (incommingDamage >= armor){
             double finalDamage = incommingDamage - armor;
-            armor -= (int)incommingDamage;
-            life  -= (int)finalDamage;
+            armor -= (int) Math.Ceiling(incommingDamage/2);
+            life  -= (int) finalDamage;
         }
  
         checkLife();

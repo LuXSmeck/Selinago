@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Objects.FieldObjects;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class Creature : FieldObject{
+public class Creature : AFieldObject{
 
     [Header("Card Attributes")]
     [SerializeField] private CreatureCard cardReference;
@@ -35,7 +36,7 @@ public class Creature : FieldObject{
             movement = 1;
         }
         
-        state = CreatureStateEnum.TABBED;
+        state = CreatureStateEnum.EXHAUSTED;
     }
 
     public void destroy(){
@@ -45,17 +46,17 @@ public class Creature : FieldObject{
     //************************************************************** Capabilitie Methods
     public void endTurn(){
         if (state == CreatureStateEnum.STUNNED){
-            state = CreatureStateEnum.TABBED;
-        }else if (state == CreatureStateEnum.TABBED){
+            state = CreatureStateEnum.EXHAUSTED;
+        }else if (state == CreatureStateEnum.EXHAUSTED){
             state = CreatureStateEnum.READY;
         }
     }
     
     public void increaseStun(){  //TODO better name
-        if (state == CreatureStateEnum.TABBED){
+        if (state == CreatureStateEnum.EXHAUSTED){
             state = CreatureStateEnum.STUNNED;
         }else if (state == CreatureStateEnum.READY){
-            state = CreatureStateEnum.TABBED;
+            state = CreatureStateEnum.EXHAUSTED;
         }
     }
     

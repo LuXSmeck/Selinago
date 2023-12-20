@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enums/Terrain", fileName = "Terrain")]
+[CreateAssetMenu(menuName = "Enums/TerrainFeature", fileName = "TerrainFeature")]
 /// <summary>
 /// Determines an Terrain and its features f.ex.:
 /// "Planes"; "Street"; "Mountains"...

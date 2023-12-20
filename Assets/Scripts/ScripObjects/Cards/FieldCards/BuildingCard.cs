@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Cards/Fields/Building", fileName = "Building")]
-public class BuildingCard : FieldCard {
+public class BuildingCard : AFieldCard {
 
    [SerializeField] private GameObject buildingModel;
 

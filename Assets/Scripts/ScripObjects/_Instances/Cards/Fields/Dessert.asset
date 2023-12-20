@@ -19,4 +19,3 @@ MonoBehaviour:
   limited: 2147483647
   affectionRange: 3
   terrain: {fileID: 11400000, guid: 138c016dd71ca854ebb1abd5ee5fe019, type: 2}
-  color: {r: 0.8490566, g: 0.7302611, b: 0.25231397, a: 0}

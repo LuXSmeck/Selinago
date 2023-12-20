@@ -25,7 +25,7 @@ public class CardManager : MonoBehaviour {
    void Awake(){
       if(Instance == null){
             Instance = this;
-            initializeFIeld();
+            initializeField();
             initializeCardSlots();
             gameManager = GameManager.Instance;
       }else{
@@ -33,7 +33,7 @@ public class CardManager : MonoBehaviour {
       }
    }
         
-   public void initializeFIeld(){
+   public void initializeField(){
       GameObject instance = Instantiate(gridTemplate, transform);
       grid = instance.GetComponentInChildren<FieldGrid>();
       grid.name = "Grid";

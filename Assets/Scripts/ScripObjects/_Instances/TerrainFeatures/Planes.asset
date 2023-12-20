@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Dessert
-  m_EditorClassIdentifier: Assembly-CSharp::TerrainFeature
+  m_Script: {fileID: 11500000, guid: 4f85ca4cc405c7e4f950370ab84aaa3a, type: 3}
+  m_Name: Planes
+  m_EditorClassIdentifier: 
   terrainName: 
-  color: {r: 0.7075472, g: 0.70510805, b: 0.13683695, a: 1}
+  color: {r: 0.17173028, g: 1, b: 0, a: 1}
   accessibility: 1
-  buildability: 0
+  buildability: 1
   blocking: 0

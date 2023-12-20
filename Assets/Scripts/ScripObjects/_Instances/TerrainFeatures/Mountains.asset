@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Forest
-  m_EditorClassIdentifier: Assembly-CSharp::TerrainFeature
+  m_Script: {fileID: 11500000, guid: 4f85ca4cc405c7e4f950370ab84aaa3a, type: 3}
+  m_Name: Mountains
+  m_EditorClassIdentifier: 
   terrainName: 
-  color: {r: 0.18743324, g: 0.33962262, b: 0.20951231, a: 1}
-  accessibility: 1
-  buildability: 1
-  blocking: 0
+  color: {r: 0.3018868, g: 0.07182899, b: 0.0332265, a: 1}
+  accessibility: 0
+  buildability: 0
+  blocking: 1

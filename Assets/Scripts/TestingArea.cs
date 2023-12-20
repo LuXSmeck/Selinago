@@ -13,7 +13,7 @@ public class TestingArea : MonoBehaviour {
    [SerializeField] private WeaponCard myWeapon;
 
    [Header("Terrains")]
-   [SerializeField] private AreaCard[] terrainCards;
+   [SerializeField] private TerrainCard[] terrainCards;
 
    [Header("PathFinding")]
    [SerializeField] private int myCardSlotId = 0;
@@ -33,8 +33,8 @@ public class TestingArea : MonoBehaviour {
    [ContextMenu("RunTest_ALL")]
    public void test() {
       testPlacement();
-      //testTerraforming();
-      //testSelect();
+      testTerraforming();
+      testSelect();
    }
    
    public void testPlacement() {

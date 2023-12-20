@@ -7,7 +7,7 @@ public class CardHolder : MonoBehaviour{
 
    [Header("All available Cards")]
    public List<CreatureCard> creatureCards;
-   public List<FieldCard>    fieldCards;
+   public List<AFieldCard>    fieldCards;
    public List<EquipableCard>   equipmentCards;
    public List<Deck> decks;
 

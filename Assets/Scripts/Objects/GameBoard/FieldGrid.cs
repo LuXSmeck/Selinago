@@ -105,9 +105,9 @@ public class FieldGrid : MonoBehaviour {
          Creature creature = startField.getCreature();
          range = creature.getMovement();
       }
-      List<Field> reachableFields = pathFinder.findFreeFieldsInRange(startField, range); //TODO
+      List<Field> reachableFields = pathFinder.findFreeFieldsInRange(startField, range);
       foreach (var field in reachableFields) {
-         field.highlight(Color.yellow);
+         field.highlight(new Color(1f, 0.69f, 0.07f));
          highlightedFields.Add(field);
       }
    }
@@ -122,7 +122,7 @@ public class FieldGrid : MonoBehaviour {
             range = effect.Value;
          }
       }
-      List<Field> attackableFields = pathFinder.findCreatureFieldsInRange(startField, range); //TODO
+      List<Field> attackableFields = pathFinder.findCreatureFieldsInRange(startField, range);
       foreach (var field in attackableFields) {
          field.highlight(new Color(1f, 0.61f, 0.08f));
          highlightedFields.Add(field);

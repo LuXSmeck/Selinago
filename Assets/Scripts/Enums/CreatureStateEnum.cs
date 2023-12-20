@@ -2,7 +2,7 @@
 
 public enum CreatureStateEnum{
    READY,
-   TABBED,
+   EXHAUSTED,
    STUNNED,
    DEAD
 }

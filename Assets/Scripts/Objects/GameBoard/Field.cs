@@ -12,7 +12,7 @@ public class Field : MonoBehaviour {
 
    [SerializeField] private Creature creature;
    [SerializeField] private Building building;
-   [SerializeField] private Area area;
+   [SerializeField] private Terrain terrain;
 
    private Vector2 position;
 
@@ -20,8 +20,8 @@ public class Field : MonoBehaviour {
       this.position = position;
       displayText = position.x + " : " + position.y;
 
-      area = this.transform.GetComponentInChildren<Area>();
-      area.setPosition((int)position.x, (int)position.y);
+      terrain = this.transform.GetComponentInChildren<Terrain>();
+      terrain.setPosition((int)position.x, (int)position.y);
 
       displayBackground.transform.parent.transform.position += new Vector3(fieldSize, fieldSize) * 0.5f;
 
@@ -36,10 +36,10 @@ public class Field : MonoBehaviour {
    public void display() {
       //DEBUG: Changes the color of the Debug-Text
       Color textColor = Color.black;
-      if (area.isBlocking()) {
+      if (terrain.isBlocking()) {
          //displayBackground.GetComponent<Image>().color = Color.black;
          textColor = new Color(140f/255f, 75f/255f, 38f/255f, 1);
-      } else if (!area.isAccessible()) {
+      } else if (!terrain.isAccessible()) {
          //displayBackground.GetComponent<Image>().color = new Color(140f/255f, 75f/255f, 38f/255f, 1); // Brown
          textColor = new Color(140f / 255f, 75f / 255f, 38f / 255f, 1);
       } else {
@@ -54,11 +54,11 @@ public class Field : MonoBehaviour {
       displayObj.color = textColor;
       
       //DEBUG: Changes the color of the Debug-Background
-      displayBackground.GetComponent<Image>().color = area.getTerrainColor();
+      displayBackground.GetComponent<Image>().color = terrain.getTerrainColor();
    }
 
    public void colorize(){
-      displayBackground.GetComponent<Image>().color = area.getTerrainColor();
+      displayBackground.GetComponent<Image>().color = terrain.getTerrainColor();
    }
    
    public void highlight(Color color) {
@@ -81,7 +81,7 @@ public class Field : MonoBehaviour {
    }
 
    public void setTerrain(TerrainFeature terrain) {
-      area.setTerrain(terrain);
+      this.terrain.setTerrain(terrain);
       display();
    }
 
@@ -93,8 +93,8 @@ public class Field : MonoBehaviour {
       return building;
    }
    
-   public Area getArea() {
-      return area;
+   public Terrain getArea() {
+      return terrain;
    }
 
    /// <summary> Checks if there is already a Creature in this Field </summary>
@@ -120,19 +120,19 @@ public class Field : MonoBehaviour {
    /// <summary> Checks if this Field gives no LineOfSight </summary>
    /// <returns> TRUE if there is NO LoS </returns>
    public bool isBlocking() {
-      return area.isBlocking();
+      return terrain.isBlocking();
    }
 
    /// <summary> Checks if a new Creature can NOW enter this Field </summary>
    /// <returns> TRUE if the field is accessable, it is not a LoS Blocker AND there is not already another Creature in it. </returns>
    public bool isApproachable() {
-      return (area.isAccessible() && !area.isBlocking() && !isOccupied());
+      return (terrain.isAccessible() && !terrain.isBlocking() && !isOccupied());
    }
    
    /// <summary> Checks if a new Creature can NOW enter this Field </summary>
    /// <returns> TRUE if the field is accessable, it is not a LoS Blocker AND there is not already another Creature in it. </returns>
    public bool hereCanBeBuild() {
-      return (area.isBuildable() && !area.isBlocking()  && !hasInfrastructure());
+      return (terrain.isBuildable() && !terrain.isBlocking()  && !hasInfrastructure());
    }
 
    //************************************************************************************************* Obsolete

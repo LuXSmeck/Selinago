@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Objects.FieldObjects;
 using UnityEngine;
 
-public class Building : FieldObject {
+public class Building : AFieldObject {
 
    [Header("Card Attributes")]
    [SerializeField] private BuildingCard cardReference;

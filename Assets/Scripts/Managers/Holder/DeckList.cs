@@ -43,7 +43,7 @@ public class DeckList{
    /// <param name="validCheck"> optional (Default false), If TRUE, The card can only be added it the deck will be valid after adding </param>
    public void addCardToDeckList(Card card, bool validCheck = false){
       CardList deck = null;
-      if ((card is FieldCard) || (card is EquipableCard)){
+      if ((card is AFieldCard) || (card is EquipableCard)){
          deck = secondaryDeckList;
       } else if ((card is CreatureCard) && !((card is FusionCreatureCard) || (card is SpecialCreatureCard))){
          deck = creatureDeckList;

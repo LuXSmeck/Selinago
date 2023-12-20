@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Cards/Fields/Area", fileName = "Area")]
-public class AreaCard : FieldCard {
+[CreateAssetMenu(menuName = "Cards/Fields/Terrain", fileName = "Terrain")]
+public class TerrainCard : AFieldCard {
 
    [SerializeField] private int affectionRange; //TODO search better Name
    [SerializeField] private TerrainFeature terrain;

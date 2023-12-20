@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Objects.FieldObjects;
 using UnityEngine;
 
 /// <summary>
 /// This FieldObject gets created in every single affected Field.
 /// RangeToRource defines the Range to the center of an Area and used to manage overlapping Areas
 /// </summary>
-public class Area : FieldObject {
+public class Terrain : AFieldObject {
 
    [Header("Card Attributes")]
    [SerializeField] private CardSlot cardSlot;
    [SerializeField] private int rangeToSource;
 
    [Header("TerrainFeatures Attributes")]
-   [SerializeField] private TerrainFeature terrain;
+   [SerializeField] private TerrainFeature terrainFeature;
    
    private void Awake() {
       initializeStandard();
@@ -23,7 +24,7 @@ public class Area : FieldObject {
    public void initialize(CardSlot cardSlot, int rangeToSource, TerrainFeature terrain) {
       this.cardSlot      = cardSlot;
       this.rangeToSource = rangeToSource;
-      this.terrain       = terrain;
+      this.terrainFeature       = terrain;
    }
 
    public void initializeStandard() {
@@ -56,22 +57,22 @@ public class Area : FieldObject {
    }
 
    public Color getTerrainColor(){
-      return terrain.getColor();
+      return terrainFeature.getColor();
    }
    
    /// <summary> Clarifies if a creature can enter this Area </summary>
    public bool isAccessible() {
-      return terrain.getFeatures()[0];
+      return terrainFeature.getFeatures()[0];
    }
 
    /// <summary> Defines if a Building can be build in this Area </summary>
    public bool isBuildable() {
-      return terrain.getFeatures()[1];
+      return terrainFeature.getFeatures()[1];
    }
 
    /// <summary> Defines if an Area gives LoS. If it does not, it is automatically also not Accessible or Buildable </summary>
    public bool isBlocking() {
-      return terrain.getFeatures()[2];
+      return terrainFeature.getFeatures()[2];
    }
 
    /// <summary> WARNING: Only for MAPPING- or DEBUGING-uses

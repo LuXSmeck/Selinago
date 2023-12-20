@@ -64,10 +64,10 @@ public class Creature : AFieldObject{
     /// There are no validation-checks at all! </summary>
     /// <param name="targetField"></param>
     public void move(Field targetField){
-        Debug.LogError(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
+        Debug.Log(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
         cardSlot.fieldReference.setCreature(null);
         cardSlot.fieldReference = targetField;
-        Debug.LogError(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
+        Debug.Log(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
         targetField.setCreature(this);
     }
     
@@ -88,13 +88,14 @@ public class Creature : AFieldObject{
         enemy.takeDamage(damage, this);
     }
 
-    public void takeDamage(double damage, Creature attacker){
-        if (damage < armor){
-            armor -= (int)damage / 2;
-        } else if (damage /2 > armor){
-            damage -= 0; //TODO
+    public void takeDamage(double incommingDamage, Creature attacker){
+        if (incommingDamage < armor){
+            armor -= (int) Math.Ceiling(incommingDamage/2);
+        } else{
+            double finalDamage = incommingDamage - armor;
+            armor -= (int)incommingDamage;
+            life  -= (int)finalDamage;
         }
-        life -= (int) Math.Ceiling(damage);
  
         checkLife();
     }

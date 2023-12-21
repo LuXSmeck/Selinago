@@ -9,15 +9,15 @@ public class BossCreature : Creature{
 
     [SerializeField] private int life;
     
-    public void initialize(CardSlot cardSlot){
+    public override void initialize(CardSlot cardSlot){
         base.initialize(cardSlot);
-        life     = cardReference.Hp;
+        life     = Strength + Armor;
     }
 
     //************************************************************** Capabilitie Methods
     
     //************************************************************** Fighting Methods
-    public void takeDamage(double incommingDamage, Creature attacker){
+    public override void takeDamage(double incommingDamage, Creature attacker){
         if (incommingDamage >= armor){
             double finalDamage = incommingDamage - armor;
             life -= (int) Math.Ceiling(incommingDamage/2);
@@ -30,7 +30,7 @@ public class BossCreature : Creature{
     }
     
     //************************************************************** private Methods
-    private void checkLife(){
+    protected override void checkLife(){
         if (life <= 0){
             state = CreatureStateEnum.DEAD;
             Debug.Log(cardReference.getName() +" failted");
@@ -38,5 +38,11 @@ public class BossCreature : Creature{
     }
 
     //************************************************************************************************* Getter & Setters
+    public override void damageStrength(int damageValue){
+        life -= damageValue;
+    }
     
+    public override void damageArmor(int damageValue){
+        life -= damageValue;
+    }
 }

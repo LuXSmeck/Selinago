@@ -74,11 +74,13 @@ public class CardManager : MonoBehaviour {
       
       int result = tryAttackingCreatureAt(attackerField, defenderField);
       switch (result) {
-         case 0:  Debug.Log("Fight is possible");
+         case 0:  //"Fight is possible"
                   Creature attacker = attackerField.getCreature();
                   Creature defender = defenderField.getCreature();
                   attacker.attack(defender);
-                  revengeAttack(attackerField, defenderField);
+                  if (!defender.isDead()){
+                     revengeAttack(attackerField, defenderField);
+                  }
                   break;
          case 1:  Debug.Log("Fight is not possible: Target is out of Range");
                   break;
@@ -93,7 +95,7 @@ public class CardManager : MonoBehaviour {
       
       int result = tryAttackingCreatureAt(attackerField, defenderField);
       switch (result) {
-         case 0:  Debug.Log("Revenge is possible");
+         case 0:  Debug.Log("RevengeFight");
                   Creature attacker = attackerField.getCreature();
                   Creature defender = defenderField.getCreature();
                   attacker.attack(defender);

@@ -21,8 +21,7 @@ MonoBehaviour:
   creatureType: {fileID: 11400000, guid: 0eb04e85db798ae448731577d9a51d09, type: 2}
   classType: {fileID: 11400000, guid: 0429eddc727e2d443b15b730c43f610c, type: 2}
   attackType: {fileID: 11400000, guid: 0429eddc727e2d443b15b730c43f610c, type: 2}
-  hp: 500
-  atk: 10
-  def: 10
+  atk: 500
+  def: 0
   attackEffects:
   - {fileID: 11400000, guid: 3618f6fcf078b1a4fb7ab2f1072f2562, type: 2}

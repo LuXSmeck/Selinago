@@ -20,7 +20,7 @@ public class Creature : AFieldObject{
     [Header("Creature Effects")]
     [SerializeField] private List<AAttackEffect> attackEffects;
     
-    public void initialize(CardSlot cardSlot){
+    public virtual void initialize(CardSlot cardSlot){
         this.cardSlot = cardSlot;
         cardReference = (CreatureCard)cardSlot.cardReference;
 
@@ -82,45 +82,108 @@ public class Creature : AFieldObject{
         damage *= enemy.cardReference.checkWeakness(cardReference.AttackType);
         Debug.Log(" The Attack starts at InitialDamge: "+ strength +" -> "+ damage +"Damge after resisting");
 
-        enemy.takeDamage(damage, this);
+        // Triggering OnHitEffects and/or triggering takeDamage Method of the enemy Creature
+        List<AAttackEffect> onHitEffects = getAttackEffects(AttackEffectTypeEnum.ONHIT);
+        bool attackSequence = true;
+        while (onHitEffects.Count > 0 && attackSequence){
+            AOnHitEffect effect = (AOnHitEffect)onHitEffects[0];
+            Debug.Log(effect.name +" got triggered");
+            attackSequence = effect.modifiedTakeDamage(damage, this, enemy);
+            onHitEffects.RemoveAt(0);
+        }
+
+        if (attackSequence){
+            enemy.takeDamage(damage, this);
+        }
     }
 
-    public void takeDamage(double incommingDamage, Creature attacker){
+    public virtual void takeDamage(double incommingDamage, Creature attacker){
         if (incommingDamage >= armor){
             double finalDamage = incommingDamage - armor;
             armor     -= (int) Math.Ceiling(incommingDamage/2);
-            strength  -= (int) finalDamage;
+            strength  -= (int) Math.Ceiling(finalDamage);
             Debug.Log(" The Attack penetrated the Armor of "+ cardReference.getName() +" and lowered the strength by"+ finalDamage);
         }else{
-            armor -= (int) Math.Ceiling(incommingDamage/2);
-            Debug.Log(" The Attack didn't penetrated the Armor of "+ cardReference.getName() +" but lowered it by"+ (int) Math.Ceiling(incommingDamage/2));
+            int finalDamage = (int) Math.Ceiling(incommingDamage/3);
+            armor -= finalDamage;
+            Debug.Log(" The Attack didn't penetrated the Armor of "+ cardReference.getName() +" but lowered it by"+ finalDamage);
         }
  
         checkLife();
+        if (state != CreatureStateEnum.DEAD){
+            foreach (AAfterHitEffect effect in attacker.getAttackEffects(AttackEffectTypeEnum.AFTERHIT)){
+                effect.performEffect(this); 
+            }
+        }
+    }
+    
+    public void die(){
+        state = CreatureStateEnum.DEAD;
+        Debug.Log(cardReference.getName() +" failted");
+        cardReference.removeCard(cardSlot);
     }
     
     //************************************************************** private Methods
-    private void checkLife(){
+    /// <summary> If the Creatures STR is lower than 0, the missing STR will be subtracted as OVERDMG from the Armor
+    /// If the STR and the Armor are 0 or lower, the Creature dies. </summary>
+    protected virtual void checkLife(){
+        if (strength < 0){
+            armor += strength;
+            strength = 0;
+        }
+        
         if (strength + armor <= 0){
-            state = CreatureStateEnum.DEAD;
-            Debug.Log(cardReference.getName() +" failted");
+            die();
+        } else if (armor < 0){
+            strength += armor;
+            armor = 0;
         }
     }
 
     //************************************************************************************************* Getter & Setters
+    public int Strength => strength;
+    public int Armor => armor;
+    public int Movement => movement;
     public override PlacableCard getReference(){
         return cardReference;
     }
-
-    public int getMovement(){
-        return movement;
+    
+    public bool isDead(){
+        return state == CreatureStateEnum.DEAD;
     }
 
+    /// <summary> This Setter is used to simulate DAMAGE. Don't use it do modify STR in any other Situation! </summary>
+    /// <param name="damageValue"> This value will be subtracted.</param>
+    public virtual void damageStrength(int damageValue){
+        strength -= damageValue;
+    }
+    
+    /// <summary> This Setter is used to simulate DAMAGE. Don't use it do modify DEF in any other Situation! </summary>
+    /// <param name="damageValue"> This value will be subtracted. </param>
+    public virtual void damageArmor(int damageValue){
+        armor -= damageValue;
+    }
+    
+    /// <summary> Returns all AttackEffects from the AttackEffectList
+    /// that is from the given TYPE. The List will be sorted by the priority. </summary>
+    /// <param name="type"></param>
+    /// <returns> NULL if there is no such Effect. </returns>
+    public List<AAttackEffect> getAttackEffects(AttackEffectTypeEnum type){
+        List<AAttackEffect> liResult = new List<AAttackEffect>();
+        for (int i=0; i < attackEffects.Count; i++){
+            if (attackEffects[i].Type == type){
+                liResult.Add(attackEffects[i]);
+            }
+        }
+        liResult.Sort();
+        return liResult;
+    }
+    
     /// <summary> Returns the LAST AttackEffect from the AttackEffectList
     /// that is from the given TYPE. </summary>
     /// <param name="type"></param>
     /// <returns> NULL if there is no such Effect. </returns>
-    public AAttackEffect getAttackEffects(AttackEffectTypeEnum type){
+    public AAttackEffect getLastAttackEffect(AttackEffectTypeEnum type){
         AAttackEffect result = null;
         int i = attackEffects.Count-1;
         while (result == null && i >= 0){

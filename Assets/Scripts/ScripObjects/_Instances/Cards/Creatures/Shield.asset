@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1517a23afb1cb4da05a697a7bd3a98, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  id: 14
+  cardName: Schield
+  cardText: 
+  level: 8
+  limited: 2147483647
+  creatureModel: {fileID: 0}
+  creatureType: {fileID: 11400000, guid: 11d71481d15b9374188b5ac54d55e1a4, type: 2}
+  classType: {fileID: 11400000, guid: dcea875751e356548a1be5b18b45ef0b, type: 2}
+  attackType: {fileID: 11400000, guid: 66c23f7740b229b40af7be91e7e75d41, type: 2}
+  atk: 0
+  def: 3000
+  attackEffects: []

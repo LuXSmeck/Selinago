@@ -18,7 +18,6 @@ public class CreatureCard : PlacableCard {
    [SerializeField] private ElementType attackType;
 
    [Header("Creature Stats")]
-   [SerializeField] private int hp;
    [SerializeField] private int atk;
    [SerializeField] private int def;
 
@@ -81,8 +80,6 @@ public class CreatureCard : PlacableCard {
 
    //************************************************************************************************* Getter & Setters
    public ElementType AttackType => attackType;
-
-   public int Hp => hp;
 
    public int Atk => atk;
 

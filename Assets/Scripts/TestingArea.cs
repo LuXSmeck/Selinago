@@ -5,16 +5,9 @@ using UnityEngine.Serialization;
 
 public class TestingArea : MonoBehaviour {
 
-   [Header("Cards")]
-   [SerializeField] private PlacableCard[] cards;
-   [SerializeField] private CreatureCard[] myMonsters;
-
-   [Header("Weapons")]
-   [SerializeField] private WeaponCard myWeapon;
-
-   [Header("Terrains")]
-   [SerializeField] private TerrainCard[] terrainCards;
-
+   private List<CreatureCard> myMonsters;
+   private List<AFieldCard> fieldCards;
+   
    [Header("PathFinding")]
    [SerializeField] private int myCardSlotId = 0;
    [SerializeField] private int targetCardSlotId = 0;
@@ -26,6 +19,10 @@ public class TestingArea : MonoBehaviour {
    // Start is called before the first frame update
    void Start() {
       cardManager = CardManager.Instance;
+      CardHolder cardHolder = cardManager.GetComponentInChildren<CardHolder>();
+      myMonsters = cardHolder.creatureCards;
+      fieldCards = cardHolder.fieldCards;
+      
       Debug.LogAssertion("***** Testing Start ***** ");
       test();
    }
@@ -58,15 +55,15 @@ public class TestingArea : MonoBehaviour {
 
    public void testTerraforming() {
       Debug.LogAssertion("***** Terrain ***** ");
-      cardManager.cardSlots[6].placeCard(terrainCards[0], 4, 4);
-      cardManager.cardSlots[7].placeCard(terrainCards[2], 3, 6);
+      cardManager.cardSlots[6].placeCard(fieldCards[0], 4, 4);
+      cardManager.cardSlots[7].placeCard(fieldCards[2], 3, 6);
    }
 
    [ContextMenu("ErrorTest_Terraforming")]
    private void testErrorTerraformingt(){
       Debug.Log("provoked Errors start *****");
-      cardManager.cardSlots[8].placeCard(terrainCards[3], 2, 2);
-      cardManager.cardSlots[9].placeCard(terrainCards[3], 2, 0);
+      cardManager.cardSlots[8].placeCard(fieldCards[3], 2, 2);
+      cardManager.cardSlots[9].placeCard(fieldCards[3], 2, 0);
    }
 
    [ContextMenu("RunTest_Select()")]
@@ -114,6 +111,29 @@ public class TestingArea : MonoBehaviour {
       cardManager.cancelAction();
    }
 
+   [ContextMenu("RunTest_OnHitEffects")]
+   public void testOnHitEffects() {
+      Debug.LogAssertion("***** Effects: OnHit ***** ");
+      cardManager.cardSlots[10].placeCard(myMonsters[6], 12, 1);
+      cardManager.cardSlots[11].placeCard(myMonsters[7], 11, 1);
+      cardManager.cardSlots[12].placeCard(myMonsters[3], 13, 1);
+      cardManager.cardSlots[13].placeCard(myMonsters[2], 12, 2);
+      cardManager.setSelectedField(cardManager.cardSlots[10]);
+      
+      Debug.LogAssertion("Attacking an Enemy with strong DEF No STR with Piece AND Deadly");
+      Field defendingField = cardManager.cardSlots[11].fieldReference;
+      cardManager.initializeAttack(defendingField);
+      
+      Debug.LogAssertion("Attacking an Enemy with no DEF with Piece AND Deadly");
+      defendingField = cardManager.cardSlots[12].fieldReference;
+      cardManager.initializeAttack(defendingField);
+      
+      
+      Debug.LogAssertion("Attacking an Enemy with strong DEF with Piece AND Deadly");
+      defendingField = cardManager.cardSlots[13].fieldReference;
+      cardManager.initializeAttack(defendingField);
+
+   }
 
    
 }

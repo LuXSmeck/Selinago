@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1cfbe0aa4e49e7a35b6ef5a63fd28b, type: 3}
-  m_Name: RangedAttack4
+  m_Script: {fileID: 11500000, guid: 2999cc8ae8d84fa4a2608f5f3ed72f86, type: 3}
+  m_Name: Piecing
   m_EditorClassIdentifier: 
-  effectName: RangedAttack
-  description: Increased the range of an Attack about the given value. NOT cumulative!
-  priority: 3
-  type: 0
-  value: 4
+  effectName: Piecing
+  description: Ignores the Armor of the target and does full dmg to its strenght.This
+    damage can't do overdamage!
+  priority: 1
+  type: 1

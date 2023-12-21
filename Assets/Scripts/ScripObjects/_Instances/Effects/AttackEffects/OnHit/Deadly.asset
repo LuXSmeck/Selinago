@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb1cfbe0aa4e49e7a35b6ef5a63fd28b, type: 3}
-  m_Name: RangedAttack4
+  m_Script: {fileID: 11500000, guid: 9083c37ce0e24aef85eee5e40b4bf8b8, type: 3}
+  m_Name: Deadly
   m_EditorClassIdentifier: 
-  effectName: RangedAttack
-  description: Increased the range of an Attack about the given value. NOT cumulative!
-  priority: 3
-  type: 0
-  value: 4
+  effectName: Deadly
+  description: If the defender takes dmg from this attack, he will instantly die.
+  priority: 5
+  type: 1

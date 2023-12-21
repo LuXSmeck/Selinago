@@ -103,7 +103,7 @@ public class FieldGrid : MonoBehaviour {
       int range = 0;
       if (startField.isOccupied()) {
          Creature creature = startField.getCreature();
-         range = creature.getMovement();
+         range = creature.Movement;
       }
       List<Field> reachableFields = pathFinder.findFreeFieldsInRange(startField, range);
       foreach (var field in reachableFields) {
@@ -117,9 +117,10 @@ public class FieldGrid : MonoBehaviour {
       if (startField.isOccupied()) {
          Creature creature = startField.getCreature();
 
-         AttackEffect effect = creature.getAttackEffects(AttackEffectTypeEnum.Range);
+         AAttackEffect effect = creature.getLastAttackEffect(AttackEffectTypeEnum.RANGE);
          if (effect != null){
-            range = effect.Value;
+            RangeEffect rangeEffect = (RangeEffect)effect; 
+            range = rangeEffect.Value;
          }
       }
       List<Field> attackableFields = pathFinder.findCreatureFieldsInRange(startField, range);

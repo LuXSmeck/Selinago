@@ -8,26 +8,25 @@ using Object = UnityEngine.Object;
 public class Creature : AFieldObject{
 
     [Header("Card Attributes")]
-    [SerializeField] private CreatureCard cardReference;
-    [SerializeField] private CardSlot cardSlot;
+    [SerializeField] protected CreatureCard cardReference;
+    [SerializeField] protected CardSlot cardSlot;
     
     [Header("Creature Attributes")]
-    [SerializeField] private int life;
-    [SerializeField] private int strength;
-    [SerializeField] private int armor;
-    [SerializeField] private int movement;
-    [SerializeField] private CreatureStateEnum state;
+    [SerializeField] private   int strength;
+    [SerializeField] protected int armor;
+    [SerializeField] private   int movement;
+    [SerializeField] protected CreatureStateEnum state;
     
     [Header("Creature Effects")]
-    [SerializeField] private List<AttackEffect> attackEffects;
+    [SerializeField] private List<AAttackEffect> attackEffects;
     
-    public void initialize(CardSlot cardSlot){
+    public virtual void initialize(CardSlot cardSlot){
         this.cardSlot = cardSlot;
         cardReference = (CreatureCard)cardSlot.cardReference;
 
-        life     = cardReference.Hp;
-        strength = cardReference.Atk;
-        armor    = cardReference.Def;
+        strength      = cardReference.Atk;
+        armor         = cardReference.Def;
+        attackEffects = cardReference.AttackEffects;
         
         movement = cardReference.getLevel();
         if (movement > 8){
@@ -78,50 +77,114 @@ public class Creature : AFieldObject{
     public void attack(Creature enemy){
         Debug.Log(cardReference.getName() +" is attacking "+ enemy.cardReference.getName());
         
-        //TODO DMG calculation
         // DMG results in BaseStr * weaknessMod 
         double damage = strength;
-        Debug.Log(" The Attack starts at InitialDamge: "+ damage);
         damage *= enemy.cardReference.checkWeakness(cardReference.AttackType);
-        Debug.Log(cardReference.getName() +" takes RealDamge: "+ damage);
+        Debug.Log(" The Attack starts at InitialDamge: "+ strength +" -> "+ damage +"Damge after resisting");
 
-        enemy.takeDamage(damage, this);
+        // Triggering OnHitEffects and/or triggering takeDamage Method of the enemy Creature
+        List<AAttackEffect> onHitEffects = getAttackEffects(AttackEffectTypeEnum.ONHIT);
+        bool attackSequence = true;
+        while (onHitEffects.Count > 0 && attackSequence){
+            AOnHitEffect effect = (AOnHitEffect)onHitEffects[0];
+            Debug.Log(effect.name +" got triggered");
+            attackSequence = effect.modifiedTakeDamage(damage, this, enemy);
+            onHitEffects.RemoveAt(0);
+        }
+
+        if (attackSequence){
+            enemy.takeDamage(damage, this);
+        }
     }
 
-    public void takeDamage(double incommingDamage, Creature attacker){
-        armor -= (int) Math.Ceiling(incommingDamage/2);
+    public virtual void takeDamage(double incommingDamage, Creature attacker){
         if (incommingDamage >= armor){
             double finalDamage = incommingDamage - armor;
-            armor -= (int) Math.Ceiling(incommingDamage/2);
-            life  -= (int) finalDamage;
+            armor     -= (int) Math.Ceiling(incommingDamage/2);
+            strength  -= (int) Math.Ceiling(finalDamage);
+            Debug.Log(" The Attack penetrated the Armor of "+ cardReference.getName() +" and lowered the strength by"+ finalDamage);
+        }else{
+            int finalDamage = (int) Math.Ceiling(incommingDamage/3);
+            armor -= finalDamage;
+            Debug.Log(" The Attack didn't penetrated the Armor of "+ cardReference.getName() +" but lowered it by"+ finalDamage);
         }
  
         checkLife();
+        if (state != CreatureStateEnum.DEAD){
+            foreach (AAfterHitEffect effect in attacker.getAttackEffects(AttackEffectTypeEnum.AFTERHIT)){
+                effect.performEffect(this); 
+            }
+        }
+    }
+    
+    public void die(){
+        state = CreatureStateEnum.DEAD;
+        Debug.Log(cardReference.getName() +" failted");
+        cardReference.removeCard(cardSlot);
     }
     
     //************************************************************** private Methods
-    private void checkLife(){
-        if (life <= 0){
-            state = CreatureStateEnum.DEAD;
-            Debug.Log(cardReference.getName() +" failted");
+    /// <summary> If the Creatures STR is lower than 0, the missing STR will be subtracted as OVERDMG from the Armor
+    /// If the STR and the Armor are 0 or lower, the Creature dies. </summary>
+    protected virtual void checkLife(){
+        if (strength < 0){
+            armor += strength;
+            strength = 0;
+        }
+        
+        if (strength + armor <= 0){
+            die();
+        } else if (armor < 0){
+            strength += armor;
+            armor = 0;
         }
     }
 
     //************************************************************************************************* Getter & Setters
+    public int Strength => strength;
+    public int Armor => armor;
+    public int Movement => movement;
     public override PlacableCard getReference(){
         return cardReference;
     }
-
-    public int getMovement(){
-        return movement;
+    
+    public bool isDead(){
+        return state == CreatureStateEnum.DEAD;
     }
 
+    /// <summary> This Setter is used to simulate DAMAGE. Don't use it do modify STR in any other Situation! </summary>
+    /// <param name="damageValue"> This value will be subtracted.</param>
+    public virtual void damageStrength(int damageValue){
+        strength -= damageValue;
+    }
+    
+    /// <summary> This Setter is used to simulate DAMAGE. Don't use it do modify DEF in any other Situation! </summary>
+    /// <param name="damageValue"> This value will be subtracted. </param>
+    public virtual void damageArmor(int damageValue){
+        armor -= damageValue;
+    }
+    
+    /// <summary> Returns all AttackEffects from the AttackEffectList
+    /// that is from the given TYPE. The List will be sorted by the priority. </summary>
+    /// <param name="type"></param>
+    /// <returns> NULL if there is no such Effect. </returns>
+    public List<AAttackEffect> getAttackEffects(AttackEffectTypeEnum type){
+        List<AAttackEffect> liResult = new List<AAttackEffect>();
+        for (int i=0; i < attackEffects.Count; i++){
+            if (attackEffects[i].Type == type){
+                liResult.Add(attackEffects[i]);
+            }
+        }
+        liResult.Sort();
+        return liResult;
+    }
+    
     /// <summary> Returns the LAST AttackEffect from the AttackEffectList
     /// that is from the given TYPE. </summary>
     /// <param name="type"></param>
     /// <returns> NULL if there is no such Effect. </returns>
-    public AttackEffect getAttackEffects(AttackEffectTypeEnum type){
-        AttackEffect result = null;
+    public AAttackEffect getLastAttackEffect(AttackEffectTypeEnum type){
+        AAttackEffect result = null;
         int i = attackEffects.Count-1;
         while (result == null && i >= 0){
             if (attackEffects[i].Type == type){

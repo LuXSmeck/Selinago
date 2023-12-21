@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254449ac108a4d45b37ce46033373e4e, type: 3}
-  m_Name: RangedAttack
+  m_Script: {fileID: 11500000, guid: bb1cfbe0aa4e49e7a35b6ef5a63fd28b, type: 3}
+  m_Name: RangedAttack4
   m_EditorClassIdentifier: 
   effectName: RangedAttack
+  description: Increased the range of an Attack about the given value. NOT cumulative!
+  priority: 3
   type: 0
   value: 4

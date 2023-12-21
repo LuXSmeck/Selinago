@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 public enum AttackEffectTypeEnum{
-   Range,
-   OnDmg
+   RANGE,
+   ONHIT,
+   AFTERHIT
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2999cc8ae8d84fa4a2608f5f3ed72f86, type: 3}
+  m_Name: Piecing
+  m_EditorClassIdentifier: 
+  effectName: Piecing
+  description: Ignores the Armor of the target and does full dmg to its strenght.This
+    damage can't do overdamage!
+  priority: 1
+  type: 1

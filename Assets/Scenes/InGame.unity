@@ -207,68 +207,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &462016133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 462016135}
-  - component: {fileID: 462016134}
-  m_Layer: 0
-  m_Name: Player_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &462016134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462016133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76576106e85012449be337366736edb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: Fantastic Enemy Name
-  deck:
-    creatureDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    secondaryDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    sideDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    isValidDeck: 0
---- !u!4 &462016135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462016133}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 501232435}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501232434
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,8 +236,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1828356700}
-  - {fileID: 462016135}
   - {fileID: 1931002927}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -316,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bebfba5079ea64abdfad0d8487805c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1828356698}
-  player2: {fileID: 462016133}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   mainDeckMincards: 10
   mainDeckMaxcards: 30
   mainDeckDoubles: 3
@@ -452,68 +388,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1828356698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1828356700}
-  - component: {fileID: 1828356699}
-  m_Layer: 0
-  m_Name: Player_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1828356699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828356698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76576106e85012449be337366736edb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerName: It's Me
-  deck:
-    creatureDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    secondaryDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    sideDeckList:
-      cardLimit_Max: 2147483647
-      cardLimit_Min: 0
-      cardLimit_Doublication: 2147483647
-      cards: []
-    isValidDeck: 0
---- !u!4 &1828356700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828356698}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 501232435}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878725190
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +453,7 @@ Transform:
   - {fileID: 716637564}
   - {fileID: 1878725191}
   m_Father: {fileID: 501232435}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1931002928
 MonoBehaviour:
@@ -593,25 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace6d9d7a4eb9aa4b95a2a709ad0dccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 11400000, guid: 8d617016bb0259547a929ae736e28242, type: 2}
-  - {fileID: 11400000, guid: bc46af094d58a5848b78f3ce59b06490, type: 2}
-  - {fileID: 11400000, guid: e75bbad5ebd14874398f48de5297adbf, type: 2}
-  myMonsters:
-  - {fileID: 11400000, guid: bc46af094d58a5848b78f3ce59b06490, type: 2}
-  - {fileID: 11400000, guid: c4bc4d40be2a6bb49b19965597f66898, type: 2}
-  - {fileID: 11400000, guid: 8d617016bb0259547a929ae736e28242, type: 2}
-  - {fileID: 11400000, guid: 64c3390ef68ad1846ac45d0ef599f7f5, type: 2}
-  - {fileID: 11400000, guid: c159b00b75083f5438a736c860264bf8, type: 2}
-  - {fileID: 11400000, guid: e75bbad5ebd14874398f48de5297adbf, type: 2}
-  myWeapon: {fileID: 0}
-  terrainCards:
-  - {fileID: 11400000, guid: 49c6733c90d0cb44e83cc76e59047fab, type: 2}
-  - {fileID: 11400000, guid: f6e9c18154c2e12479b48b35b9d8e796, type: 2}
-  - {fileID: 11400000, guid: 58c0c10e2accb1e4c9a8a8d0b24d6146, type: 2}
-  - {fileID: 11400000, guid: 70ccf680b60a66b4da7233b115f453ba, type: 2}
-  myCardSlotId: 0
-  targetCardSlotId: 1
+  myCardSlotId: 1
+  targetCardSlotId: 2
   targetX: 3
   targetY: 0
 --- !u!114 &1931002929
@@ -650,15 +507,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatureCards:
+  - {fileID: 11400000, guid: bc46af094d58a5848b78f3ce59b06490, type: 2}
+  - {fileID: 11400000, guid: c4bc4d40be2a6bb49b19965597f66898, type: 2}
+  - {fileID: 11400000, guid: 8d617016bb0259547a929ae736e28242, type: 2}
+  - {fileID: 11400000, guid: 64c3390ef68ad1846ac45d0ef599f7f5, type: 2}
   - {fileID: 11400000, guid: c159b00b75083f5438a736c860264bf8, type: 2}
   - {fileID: 11400000, guid: e75bbad5ebd14874398f48de5297adbf, type: 2}
-  - {fileID: 11400000, guid: 64c3390ef68ad1846ac45d0ef599f7f5, type: 2}
-  - {fileID: 11400000, guid: c4bc4d40be2a6bb49b19965597f66898, type: 2}
-  - {fileID: 11400000, guid: bc46af094d58a5848b78f3ce59b06490, type: 2}
-  - {fileID: 11400000, guid: 8d617016bb0259547a929ae736e28242, type: 2}
+  - {fileID: 11400000, guid: 2da99a388b3e4964bb0bd656b28e39fd, type: 2}
+  - {fileID: 11400000, guid: 42e445bd989585d4eb76723495ee0090, type: 2}
   fieldCards:
+  - {fileID: 11400000, guid: 49c6733c90d0cb44e83cc76e59047fab, type: 2}
+  - {fileID: 11400000, guid: f6e9c18154c2e12479b48b35b9d8e796, type: 2}
+  - {fileID: 11400000, guid: 58c0c10e2accb1e4c9a8a8d0b24d6146, type: 2}
+  - {fileID: 11400000, guid: 70ccf680b60a66b4da7233b115f453ba, type: 2}
   - {fileID: 11400000, guid: 95ab3b30cd7b44c42aef557ac239a83f, type: 2}
-  - {fileID: 0}
   equipmentCards:
   - {fileID: 11400000, guid: 708ac7fb1e61fce48a8d6b63b311c71d, type: 2}
   decks: []

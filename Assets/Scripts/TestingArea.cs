@@ -55,6 +55,8 @@ public class TestingArea : MonoBehaviour {
 
    public void testTerraforming() {
       Debug.LogAssertion("***** Terrain ***** ");
+      cardManager.cardSlots[5].placeCard(fieldCards[3], 5, 5);
+      cardManager.cardSlots[5].removeCard();
       cardManager.cardSlots[6].placeCard(fieldCards[0], 4, 4);
       cardManager.cardSlots[7].placeCard(fieldCards[2], 3, 6);
    }

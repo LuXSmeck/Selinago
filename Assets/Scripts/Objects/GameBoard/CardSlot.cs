@@ -40,6 +40,9 @@ public class CardSlot : MonoBehaviour{
       return placeCard(card, CardManager.Instance.getFieldAt(x,y));
    }
 
+   /// <summary> Main Call to remove a Card from the Board. It will dirigate all other removecalls and
+   /// delete the References after the card has been removed. </summary>
+   /// <returns> FALSE if there was no card to remove. </returns>
    public bool removeCard(){
       if (cardReference != null){
          cardReference.removeCard(this);

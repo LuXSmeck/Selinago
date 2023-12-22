@@ -120,7 +120,7 @@ public class Creature : AFieldObject{
     public void die(){
         state = CreatureStateEnum.DEAD;
         Debug.Log(cardReference.getName() +" failted");
-        cardReference.removeCard(cardSlot);
+        cardSlot.removeCard();
     }
     
     //************************************************************** private Methods

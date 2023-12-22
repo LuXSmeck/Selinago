@@ -42,8 +42,7 @@ public class FieldGrid : MonoBehaviour {
       int positionY = (int)cardSlot.fieldReference.getPosition().y;
       Field startField = fields[positionX, positionY];
       
-      List<Field> fieldsInRange = pathFinder.findFieldsInRange(positionX, positionY, affectionRange);
-      fieldsInRange.Add(startField);
+      List<Field> fieldsInRange = pathFinder.findFieldsInRange(positionX, positionY, affectionRange, true);
       foreach (Field field in fieldsInRange) {
          int distanceToCenter = CardManager.Instance.getFields().pathFinder.calculateDistance(positionX, positionY, (int)field.getPosition().x, (int)field.getPosition().y);
          if (distanceToCenter <= field.getArea().getRange()) {

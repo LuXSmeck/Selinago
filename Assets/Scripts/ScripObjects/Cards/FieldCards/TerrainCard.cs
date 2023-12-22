@@ -20,8 +20,7 @@ public class TerrainCard : AFieldCard {
       List<Field> fieldsInRange = CardManager.Instance.getFields().pathFinder.findFieldsInRange(
                                     (int)cardSlot.fieldReference.getPosition().x,
                                     (int)cardSlot.fieldReference.getPosition().y,
-                                    affectionRange);
-                                      
+                                    affectionRange, true);
       foreach (Field field in fieldsInRange) {
          if (field.getArea().getCardSlot() == cardSlot) {
             field.getArea().removeSource();

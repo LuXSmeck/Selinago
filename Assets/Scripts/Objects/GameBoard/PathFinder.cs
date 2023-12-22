@@ -173,7 +173,7 @@ public class PathFinder {
    /// <param name="startY"></param>
    /// <param name="range"></param>
    /// <returns></returns>
-   public List<Field> findFieldsInRange(int startX, int startY, int range) {
+   public List<Field> findFieldsInRange(int startX, int startY, int range, bool withStart = false) {
       Field startField = grid.fields[startX, startY];
 
       List<Field> openList = new List<Field> { startField };
@@ -230,7 +230,10 @@ public class PathFinder {
          closedList.Add(openList[0]);
          openList.Remove(openList[0]);
       }
-      closedList.Remove(startField);
+
+      if (!withStart){
+         closedList.Remove(startField);
+      }
 
       //No more open Nodes
       return closedList;

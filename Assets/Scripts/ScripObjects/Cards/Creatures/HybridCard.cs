@@ -32,4 +32,8 @@ public class HybridCard : CreatureCard{
         return dmgFactor;
     }
     
+    
+    public override List<CreatureType> getCreatureTypes(){
+        return new List<CreatureType>(){ creatureType, hybridType };
+    }
 }

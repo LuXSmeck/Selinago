@@ -7,14 +7,17 @@ using UnityEngine;
 public class Building : AFieldObject {
 
    [Header("Card Attributes")]
-   [SerializeField] private BuildingCard cardReference;
+   [SerializeField] protected BuildingCard cardReference;
+   [SerializeField] protected CardSlot cardSlot;
 
    [Header("Building Attributes")]
    [SerializeField] private int durability;
 
-   public void initialize(BuildingCard cardReference) {
-      this.cardReference = cardReference;
+   public virtual void initialize(CardSlot cardSlot){
+      this.cardSlot = cardSlot;
+      cardReference = (BuildingCard)cardSlot.cardReference;
 
+      //TODO loyality: Buildings can now be destroyed, but should they be capturable?
       durability = cardReference.getDurability();
    }
 
@@ -32,7 +35,8 @@ public class Building : AFieldObject {
 
    //************************************************************** private Methods
    private void destroyed() {
-      //TODO
+      Debug.Log(cardReference.getName() +" got destroyed");
+      cardSlot.removeCard();
    }
 
    //************************************************************************************************* Getter & Setters

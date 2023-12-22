@@ -47,7 +47,7 @@ public class CreatureCard : PlacableCard {
 
       return dmgFactor;
    }
-
+   
    public override bool placeCard(CardSlot cardSlot){
       if (!cardSlot.fieldReference.isApproachable()){
          Debug.LogError("field is not Approachable!");
@@ -80,10 +80,11 @@ public class CreatureCard : PlacableCard {
 
    //************************************************************************************************* Getter & Setters
    public ElementType AttackType => attackType;
-
    public int Atk => atk;
-
    public int Def => def;
-
    public List<AAttackEffect> AttackEffects => attackEffects;
+
+   public virtual List<CreatureType> getCreatureTypes(){
+      return new List<CreatureType>(){ creatureType };
+   }
 }

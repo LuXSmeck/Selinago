@@ -28,11 +28,10 @@ public class Creature : AFieldObject{
         armor         = cardReference.Def;
         attackEffects = cardReference.AttackEffects;
         
-        movement = cardReference.getLevel();
-        if (movement > 8){
+        // Base-Movement is limited to 8 even if the lvl is higher
+        movement = cardReference.getLevel(); 
+        if (movement > 8){ 
             movement = 8;
-        }else if (movement < 1){
-            movement = 1;
         }
         
         state = CreatureStateEnum.EXHAUSTED;

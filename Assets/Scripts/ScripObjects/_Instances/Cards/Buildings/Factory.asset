@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d9f20abd9d6f043a5d63e2c1773dd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d9e08d049444e8798ba530cfce06988, type: 3}
   m_Name: Factory
   m_EditorClassIdentifier: 
-  id: 9
-  cardName: Factory
-  cardText: fluff
-  level: 3
+  id: 15
+  cardName: 
+  cardText: 
+  level: 0
+  limited: 2147483647
   buildingModel: {fileID: 0}
   durability: 0
+  creatureWhitelist: []
+  creatureBlacklist: []

@@ -48,17 +48,13 @@ public class CreatureCard : PlacableCard {
       return dmgFactor;
    }
    
-   public override bool placeCard(CardSlot cardSlot){
-      if (!cardSlot.fieldReference.isApproachable()){
-         Debug.LogError("field is not Approachable!");
-         return false;
-      } else{
-         GameObject instance = Instantiate(CardManager.Instance.creatureTemplate,
-                                           CardManager.Instance.spawnPos);
+   public override bool placeCard(CardSlot cardSlot, bool forcePlace=false){
+      if (forcePlace || cardSlot.fieldReference.isApproachable()){
+         GameObject instance = instanciateInstance();
          Creature creatureInstance = instance.GetComponent<Creature>();
          creatureInstance.initialize(cardSlot);
 
-         bool result = CardManager.Instance.spawnCreature(cardSlot.fieldReference, creatureInstance);
+         bool result = CardManager.Instance.spawnCreature(cardSlot.fieldReference, creatureInstance, forcePlace);
 
          if (result){
             creatureInstance.name = "Creature: " + cardName;
@@ -71,6 +67,9 @@ public class CreatureCard : PlacableCard {
          }
 
          return true;
+      }else{
+         Debug.LogError("field is not Approachable!");
+         return false;
       }
    }
 
@@ -78,6 +77,10 @@ public class CreatureCard : PlacableCard {
       cardSlot.fieldReference.setCreature(null);
    }
 
+   protected virtual GameObject instanciateInstance(){
+      return Instantiate(CardManager.Instance.creatureTemplate, CardManager.Instance.spawnPos);
+   }
+   
    //************************************************************************************************* Getter & Setters
    public ElementType AttackType => attackType;
    public int Atk => atk;

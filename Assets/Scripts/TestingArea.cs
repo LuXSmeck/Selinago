@@ -36,9 +36,13 @@ public class TestingArea : MonoBehaviour {
    
    public void testPlacement() {
       Debug.LogAssertion("***** Creature Placing: RED Labels ***** ");
+      cardManager.cardSlots[14].placeCard(fieldCards[4], 2, 1);
       cardManager.cardSlots[0].placeCard(myMonsters[0], 2, 1);
+      cardManager.cardSlots[15].placeCard(fieldCards[4], 2, 2);
       cardManager.cardSlots[1].placeCard(myMonsters[1], 2, 2);
+      cardManager.cardSlots[16].placeCard(fieldCards[4], 4, 4);
       cardManager.cardSlots[2].placeCard(myMonsters[2], 4, 4);
+      cardManager.cardSlots[17].placeCard(fieldCards[4], 3, 1);
       cardManager.cardSlots[3].placeCard(myMonsters[0], 3, 1);
    }
 
@@ -116,10 +120,10 @@ public class TestingArea : MonoBehaviour {
    [ContextMenu("RunTest_OnHitEffects")]
    public void testOnHitEffects() {
       Debug.LogAssertion("***** Effects: OnHit ***** ");
-      cardManager.cardSlots[10].placeCard(myMonsters[6], 12, 1);
-      cardManager.cardSlots[11].placeCard(myMonsters[7], 11, 1);
-      cardManager.cardSlots[12].placeCard(myMonsters[3], 13, 1);
-      cardManager.cardSlots[13].placeCard(myMonsters[2], 12, 2);
+      cardManager.cardSlots[10].placeCard(myMonsters[6], 12, 1, true);
+      cardManager.cardSlots[11].placeCard(myMonsters[7], 11, 1, true);
+      cardManager.cardSlots[12].placeCard(myMonsters[3], 13, 1, true);
+      cardManager.cardSlots[13].placeCard(myMonsters[2], 12, 2, true);
       cardManager.setSelectedField(cardManager.cardSlots[10]);
       
       Debug.LogAssertion("Attacking an Enemy with strong DEF No STR with Piece AND Deadly");

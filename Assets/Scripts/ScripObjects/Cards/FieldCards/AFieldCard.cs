@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class AFieldCard : PlacableCard{
     
-    public override bool placeCard(CardSlot cardSlot){
+    public override bool placeCard(CardSlot cardSlot, bool forcePlace=false){
         Debug.Log("TODO FieldCard");
         throw new NotImplementedException();
     }

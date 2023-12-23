@@ -12,36 +12,37 @@ public class BuildingCard : AFieldCard {
    [Header("Building Stats")]
    [SerializeField] private int durability;
 
-   public override bool placeCard(CardSlot cardSlot){
+   public override bool placeCard(CardSlot cardSlot, bool forcePlace=false){
       if (!cardSlot.fieldReference.hereCanBeBuild()){
          return false;
       } else{
-         /*
-         GameObject instance = Instantiate(CardManager.Instance.creatureTemplate,
-            CardManager.Instance.spawnPos);
-         Creature creatureInstance = instance.GetComponent<Creature>();
-         creatureInstance.initialize(this);
+         GameObject instance = instanciateInstance();
+         Building buildingInstance = instance.GetComponent<Building>();
+         buildingInstance.initialize(cardSlot);
 
-         bool result = CardManager.Instance.spawnCreature(targetField, creatureInstance);
+         bool result = CardManager.Instance.spawnBuilding(cardSlot.fieldReference, buildingInstance);
 
          if (result){
-            creatureInstance.name = "Creature: " + cardName;
+            buildingInstance.name = "Building: " + cardName;
 
-            if (creatureModel != null){
-               Instantiate(creatureModel, instance.transform);
+            if (buildingModel != null){
+               Instantiate(buildingModel, instance.transform);
             }
+            return true;
          } else{
             Destroy(instance.gameObject);
+            return false;
          }
-         */
-         
-         //TODO
-         return true;
       }
    }
 
+
    public override void removeCard(CardSlot cardSlot){
       //TODO
+   }
+   
+   protected virtual GameObject instanciateInstance(){
+      return Instantiate(CardManager.Instance.buildingTemplate, CardManager.Instance.spawnPos);
    }
 
    //************************************************************************************************* Getter & Setters

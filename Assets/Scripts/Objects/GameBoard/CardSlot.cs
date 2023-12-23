@@ -11,7 +11,7 @@ public class CardSlot : MonoBehaviour{
    /// <param name="card"> A placable Card that stays in the active Slot </param>
    /// <param name="field"> The fieldreference to the specific Field </param>
    /// <returns> FALSE if the placement went wrong </returns>
-   public bool placeCard(PlacableCard card, Field field){
+   public bool placeCard(PlacableCard card, Field field, bool forcePlay=false){
       if (cardReference != null){
          Debug.LogError("Cardslot already taken!");
          return false;
@@ -36,8 +36,8 @@ public class CardSlot : MonoBehaviour{
    /// <param name="x"></param>
    /// <param name="y">The fieldcoordinates to the specific Field </param>
    /// <returns> FALSE if the placement went wrong </returns>
-   public bool placeCard(PlacableCard card, int x, int y){
-      return placeCard(card, CardManager.Instance.getFieldAt(x,y));
+   public bool placeCard(PlacableCard card, int x, int y, bool forcePlay=false){
+      return placeCard(card, CardManager.Instance.getFieldAt(x,y), forcePlay);
    }
 
    /// <summary> Main Call to remove a Card from the Board. It will dirigate all other removecalls and

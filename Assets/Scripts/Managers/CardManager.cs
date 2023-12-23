@@ -6,7 +6,7 @@ public class CardManager : MonoBehaviour {
    private GameManager gameManager;
 
    private const int DIMENSION = 15;
-   private const int SLOTS     = 20;
+   private const int SLOTS     = 30;
    
    [Header("Fields")]
    [SerializeField] private FieldGrid grid;
@@ -20,6 +20,8 @@ public class CardManager : MonoBehaviour {
    [SerializeField] public GameObject gridTemplate;
    [SerializeField] public GameObject cardSlotTemplate;
    [SerializeField] public GameObject creatureTemplate;
+   [SerializeField] public GameObject buildingTemplate;
+   [SerializeField] public GameObject factoryTemplate;
    [SerializeField] public Transform spawnPos;
 
    void Awake(){
@@ -53,21 +55,12 @@ public class CardManager : MonoBehaviour {
    }
 
    //*********************************************************************** Card Positioning
-   public bool spawnCreature(Field targetField, Creature creature){
-      //Field targetField = grid.fields[positionX, positionY];
-      int positionX = (int)targetField.getPosition().x;
-      int positionY = (int)targetField.getPosition().y;
-      if (!targetField.isApproachable()){
-         Debug.LogError("Placement failed: Field "+ positionX +"; "+ positionY +" is not Valid");
-         return false;
-      }else{
-         targetField.setCreature(creature);
-         creature.setPosition(positionX, positionY);
-         Debug.Log("Card "+ creature.getReference().name +" got successfully placed at "+ positionX +" "+ positionY);
-         return true;
-      }
+   public bool spawnCreature(Field targetField, Creature creature, bool forceSpawn=false){
+      return targetField.spawnCreature(creature, forceSpawn);
    }
-
+   public bool spawnBuilding(Field targetField, Building building, bool forceSpawn=false){
+      return targetField.spawnBuilding(building, forceSpawn);
+   }
    //*********************************************************************** Card Interactions
    public void initializeAttack(Field defenderField){
       Field attackerField = selectedField;

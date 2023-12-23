@@ -10,7 +10,7 @@ public class TerrainCard : AFieldCard {
    [SerializeField] private int affectionRange; //TODO search better Name
    [SerializeField] private TerrainFeature terrain;
 
-   public override bool placeCard(CardSlot cardSlot){
+   public override bool placeCard(CardSlot cardSlot, bool forcePlace=false){
       CardManager.Instance.getFields().terraformArea(affectionRange, cardSlot, terrain);
       
       return true;

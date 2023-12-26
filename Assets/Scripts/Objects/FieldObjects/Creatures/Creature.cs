@@ -62,10 +62,8 @@ public class Creature : AFieldObject{
     /// There are no validation-checks at all! </summary>
     /// <param name="targetField"></param>
     public void move(Field targetField){
-        Debug.Log(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
         cardSlot.fieldReference.setCreature(null);
         cardSlot.fieldReference = targetField;
-        Debug.Log(cardSlot.fieldReference.getPosition().x +" "+ cardSlot.fieldReference.getPosition().y);
         targetField.setCreature(this);
     }
     
@@ -161,6 +159,34 @@ public class Creature : AFieldObject{
     /// <param name="damageValue"> This value will be subtracted. </param>
     public virtual void damageArmor(int damageValue){
         armor -= damageValue;
+    }
+
+    public void increaseStrength(int value){
+        strength += value;
+    }
+    
+    public void increaseArmor(int value){
+        armor += value;
+    }
+
+    /// <summary> Adds an effect to the creature </summary>
+    /// <param name="effect"></param>
+    public void addAttackEffeckt(AAttackEffect effect){
+        attackEffects.Add(effect);
+    }
+    /// <summary> Removes the LAST occurence of that buff from the creature </summary>
+    /// <param name="effect"></param>
+    public void removeAttackEffeckt(AAttackEffect effect){
+        bool found = false;
+        int i = attackEffects.Count-1;
+        while (!found && i >= 0){
+            if (attackEffects[i] == effect){
+                attackEffects.RemoveAt(i);
+                found = true;
+            }
+
+            i--;
+        }
     }
     
     /// <summary> Returns all AttackEffects from the AttackEffectList

@@ -525,6 +525,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58c0c10e2accb1e4c9a8a8d0b24d6146, type: 2}
   - {fileID: 11400000, guid: 70ccf680b60a66b4da7233b115f453ba, type: 2}
   - {fileID: 11400000, guid: 95ab3b30cd7b44c42aef557ac239a83f, type: 2}
+  - {fileID: 11400000, guid: 716f41bf34d607b41b7744b8d28fca00, type: 2}
+  - {fileID: 11400000, guid: 12103f8bfbbbd284e8c86333e425e74a, type: 2}
   equipmentCards:
   - {fileID: 11400000, guid: 708ac7fb1e61fce48a8d6b63b311c71d, type: 2}
   decks: []

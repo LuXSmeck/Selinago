@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e30494447cb16459dbe2417051d5d7, type: 3}
-  m_Name: 1H-Sword
+  m_Script: {fileID: 11500000, guid: 3d9e08d049444e8798ba530cfce06988, type: 3}
+  m_Name: Tank_Factory
   m_EditorClassIdentifier: 
-  description: 
+  id: 16
+  cardName: Tank Factory
+  cardText: 
+  level: 0
+  limited: 2147483647
+  buildingModel: {fileID: 0}
+  durability: 0
   creatureWhitelist:
-  - {fileID: 11400000, guid: e76a03ed7ac0c5545b614e7f96b9d254, type: 2}
-  - {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
-  - {fileID: 11400000, guid: dcea875751e356548a1be5b18b45ef0b, type: 2}
+  - {fileID: 11400000, guid: c39b1f936b5d9834689941c531608d56, type: 2}
   creatureBlacklist: []

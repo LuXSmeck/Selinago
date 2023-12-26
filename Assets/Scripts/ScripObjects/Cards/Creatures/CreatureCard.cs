@@ -28,20 +28,20 @@ public class CreatureCard : PlacableCard {
    ///     Checks how many damage an Attack of the given Type would do,
    ///     and Returns the calculated factor.
    /// </summary>
-   /// <param name="pAttackType"> ElementType of the incoming Attack </param>
+   /// <param name="attackType"> ElementType of the incoming Attack </param>
    /// <returns> Double DamageFactor (1 = 100%) </returns>
-   public virtual double checkWeakness(ElementType pAttackType) {
+   public virtual double checkWeakness(ElementType attackType) {
       double dmgFactor = 1;
-      if (creatureType.elementalImmunities.Contains(pAttackType) ||
-          classType.elementalImmunities.Contains(pAttackType)) {
+      if (creatureType.elementalImmunities.Contains(attackType) ||
+          classType.elementalImmunities.Contains(attackType)) {
          dmgFactor /= 4;
       }
-      if (creatureType.elementalResistances.Contains(pAttackType) ||
-          classType.elementalResistances.Contains(pAttackType)) {
+      if (creatureType.elementalResistances.Contains(attackType) ||
+          classType.elementalResistances.Contains(attackType)) {
          dmgFactor /= 2;
       }
-      if (creatureType.elementalWeaknesses.Contains(pAttackType) ||
-          classType.elementalWeaknesses.Contains(pAttackType)) {
+      if (creatureType.elementalWeaknesses.Contains(attackType) ||
+          classType.elementalWeaknesses.Contains(attackType)) {
          dmgFactor *= 2;
       }
 
@@ -62,11 +62,12 @@ public class CreatureCard : PlacableCard {
             if (creatureModel != null){
                Instantiate(creatureModel, instance.transform);
             }
+
+            return true;
          } else{
             Destroy(instance.gameObject);
+            return false;
          }
-
-         return true;
       }else{
          Debug.LogError("field is not Approachable!");
          return false;
@@ -80,6 +81,13 @@ public class CreatureCard : PlacableCard {
    protected virtual GameObject instanciateInstance(){
       return Instantiate(CardManager.Instance.creatureTemplate, CardManager.Instance.spawnPos);
    }
+
+   public virtual bool checkMyCompatibility(List<Type> checkList){
+      bool result = checkList.Contains(creatureType) ||
+                    checkList.Contains(classType);
+
+      return result;
+   }
    
    //************************************************************************************************* Getter & Setters
    public ElementType AttackType => attackType;
@@ -87,7 +95,4 @@ public class CreatureCard : PlacableCard {
    public int Def => def;
    public List<AAttackEffect> AttackEffects => attackEffects;
 
-   public virtual List<CreatureType> getCreatureTypes(){
-      return new List<CreatureType>(){ creatureType };
-   }
 }

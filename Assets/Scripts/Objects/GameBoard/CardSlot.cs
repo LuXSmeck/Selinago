@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CardSlot : MonoBehaviour{
 
-   [SerializeField] public PlacableCard cardReference;
    [SerializeField] public Field fieldReference;
+   [SerializeField] public PlacableCard cardReference;
+   [SerializeField] public List<EquipableCard> cardAugmentations;
    
    /// <summary> Checks if the given Field is empty and calls then the placeCardMethod of the given card </summary>
    /// <param name="card"> A placable Card that stays in the active Slot </param>
@@ -21,6 +22,7 @@ public class CardSlot : MonoBehaviour{
       } else{
          cardReference  = card;
          fieldReference = field;
+         
          bool success = card.placeCard(this);
          if (!success){
             cardReference  = null;
@@ -45,6 +47,7 @@ public class CardSlot : MonoBehaviour{
    /// <returns> FALSE if there was no card to remove. </returns>
    public bool removeCard(){
       if (cardReference != null){
+         cardAugmentations.Clear();
          cardReference.removeCard(this);
          cardReference = null;
          fieldReference = null;
@@ -52,5 +55,16 @@ public class CardSlot : MonoBehaviour{
       } else{
          return false;
       }
+   }
+
+   public void addEquipment(EquipableCard equipableCard){
+      equipableCard.equipCard(this);
+      cardAugmentations.Add(equipableCard);
+   }
+   
+   
+   public void removeEquipment(EquipableCard equipableCard){
+      equipableCard.removeEffects(this);
+      cardAugmentations.Remove(equipableCard);
    }
 }

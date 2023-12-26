@@ -7,8 +7,8 @@ using UnityEngine;
 /// <summary> Building to spawn Creatures </summary>
 public class Factory : Building {
 
-   [SerializeField] private List<CreatureType> creatureWhitelist;
-   [SerializeField] private List<CreatureType> creatureBlacklist;
+   [SerializeField] private List<Type> creatureWhitelist;
+   [SerializeField] private List<Type> creatureBlacklist;
    
    public override void initialize(CardSlot cardSlot){
       base.initialize(cardSlot);
@@ -23,22 +23,11 @@ public class Factory : Building {
    /// <param name="creatureCard"></param>
    /// <returns> TRUE if the creatureCard is compatible with this factory </returns>
    public bool checkCompatibility(CreatureCard creatureCard){
-      List<CreatureType> checkValues = creatureCard.getCreatureTypes();
       bool result;
       if (creatureWhitelist.Count > 0){
-         result = false;
-         foreach (CreatureType checkType in checkValues){
-            if (creatureWhitelist.Contains(checkType)){
-               result = true;
-            }
-         }
+         result = creatureCard.checkMyCompatibility(creatureWhitelist);
       } else{
-         result = true;
-         foreach (CreatureType checkType in checkValues){
-            if (creatureBlacklist.Contains(checkType)){
-               result = false;
-            }
-         }
+         result = ! creatureCard.checkMyCompatibility(creatureBlacklist);
       }
       return result;
    }

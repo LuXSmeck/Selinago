@@ -141,5 +141,36 @@ public class TestingArea : MonoBehaviour {
 
    }
 
-   
+   [ContextMenu("RunTest_Whitelisting")]
+   public void testFactoryWhitelisting(){
+      Debug.LogAssertion("***** Factory: Whitelisting ***** ");
+      cardManager.cardSlots[18].placeCard(fieldCards[5], 12, 12);
+      cardManager.cardSlots[19].placeCard(myMonsters[0], 12, 12);
+      cardManager.cardSlots[19].placeCard(myMonsters[1], 12, 12);
+      
+      Debug.LogAssertion("***** Factory: Blacklisting ***** ");
+      cardManager.cardSlots[20].placeCard(fieldCards[6], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[2], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[1], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[0], 13, 13);
+
+   }
+
+
+   [ContextMenu("RunTest_Weapons")]
+   public void testWeapons(){
+      Debug.LogAssertion("***** Factory: Whitelisting ***** ");
+      cardManager.cardSlots[18].placeCard(fieldCards[5], 12, 12);
+      cardManager.cardSlots[19].placeCard(myMonsters[0], 12, 12);
+      cardManager.cardSlots[19].placeCard(myMonsters[1], 12, 12);
+      
+      Debug.LogAssertion("***** Factory: Blacklisting ***** ");
+      cardManager.cardSlots[20].placeCard(fieldCards[6], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[2], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[1], 13, 13);
+      cardManager.cardSlots[21].placeCard(myMonsters[0], 13, 13);
+
+   }
+
+
 }

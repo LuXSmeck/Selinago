@@ -7,14 +7,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Building/Factory", fileName = "Building")]
 public class FactoryCard: BuildingCard {
    
-   [SerializeField] private List<CreatureType> creatureWhitelist;
-   [SerializeField] private List<CreatureType> creatureBlacklist;
+   [SerializeField] private List<Type> creatureWhitelist;
+   [SerializeField] private List<Type> creatureBlacklist;
 
    protected override GameObject instanciateInstance(){
       return Instantiate(CardManager.Instance.factoryTemplate, CardManager.Instance.spawnPos);
    }
    
    //************************************************************************************************* Getter & Setters
-   public List<CreatureType> CreatureWhitelist => creatureWhitelist;
-   public List<CreatureType> CreatureBlacklist => creatureBlacklist;
+   public List<Type> CreatureWhitelist => creatureWhitelist;
+   public List<Type> CreatureBlacklist => creatureBlacklist;
 }

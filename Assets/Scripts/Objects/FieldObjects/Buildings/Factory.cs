@@ -13,8 +13,17 @@ public class Factory : Building {
    public override void initialize(CardSlot cardSlot){
       base.initialize(cardSlot);
       FactoryCard factoryCard = (FactoryCard) cardReference;
-      creatureWhitelist = factoryCard.CreatureWhitelist;
-      creatureBlacklist = factoryCard.CreatureBlacklist;
+      creatureWhitelist = new List<Type>(factoryCard.CreatureWhitelist);
+      creatureBlacklist = new List<Type>(factoryCard.CreatureBlacklist);
+   }
+
+   public void buildNewCreature(Creature creature){
+      foreach (AUpgradeEffect aEffect in upgradeEffects){
+         if (aEffect is ConstructionBoostEffect){
+            ConstructionBoostEffect effect = (ConstructionBoostEffect)aEffect;
+            effect.apply(creature);
+         }
+      }
    }
    
    //************************************************************** functional Methods

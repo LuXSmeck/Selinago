@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba26af4dde8b2249819e3f75d9f9237, type: 3}
-  m_Name: PowerAxe
+  m_Script: {fileID: 11500000, guid: e8db0dcad10b4e55a937c58edc742bd1, type: 3}
+  m_Name: PoisonMonsters
   m_EditorClassIdentifier: 
-  id: 17
-  cardName: Power Axe
+  id: 20
+  cardName: 
   cardText: 
   level: 0
-  limited: 2147483647
-  type: {fileID: 11400000, guid: c5b20130ac2a4794398fc364e59fa959, type: 2}
-  attackBoost: 1000
-  defenceBoost: 500
-  attackEffect: {fileID: 0}
+  limited: 4
+  durabilityBoost: 0
+  upgradeEffect: {fileID: 11400000, guid: 2008f7b7a9751bd42934350867cf450e, type: 2}

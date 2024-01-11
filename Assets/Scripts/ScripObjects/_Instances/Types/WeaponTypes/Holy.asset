@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98e30494447cb16459dbe2417051d5d7, type: 3}
-  m_Name: Axe
+  m_Name: Holy
   m_EditorClassIdentifier: 
   description: 
-  creatureWhitelist:
-  - {fileID: 11400000, guid: dcea875751e356548a1be5b18b45ef0b, type: 2}
-  - {fileID: 11400000, guid: e76a03ed7ac0c5545b614e7f96b9d254, type: 2}
-  creatureBlacklist: []
+  creatureWhitelist: []
+  creatureBlacklist:
+  - {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
+  - {fileID: 11400000, guid: 4cf1a48d61a48944e96a8440aa88ae60, type: 2}

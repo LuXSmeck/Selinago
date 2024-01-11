@@ -62,16 +62,6 @@ public class Field : MonoBehaviour {
    }
    
    //************************************************************************************************* Spawn
-   public bool spawnCreature(Creature creature, bool forceSpawn=false){
-      if (forceSpawn || checkCompatibility((CreatureCard)creature.getReference())){
-         this.creature = creature;
-         Debug.Log("Card "+ creature.getReference().name +" got successfully placed at "+ position.x +" "+ position.y);
-         display();
-         return true;
-      }else{
-         return false;
-      }
-   }
    public bool spawnBuilding(Building building, bool forceSpawn=false){
       this.building = building;
       Debug.Log("Card "+ building.getReference().name +" got successfully placed at "+ position.x +" "+ position.y);
@@ -80,14 +70,6 @@ public class Field : MonoBehaviour {
    }
 
    //************************************************************************************************* Private
-   private bool checkCompatibility(CreatureCard creatureCard){
-      if (hasInfrastructure() && building is Factory){
-         Factory factory = (Factory)building;
-         return factory.checkCompatibility(creatureCard);
-      }else{
-         return false;
-      }
-   }
    
    //************************************************************************************************* Getter & Setters
    public Vector2 getPosition() {
@@ -113,6 +95,14 @@ public class Field : MonoBehaviour {
 
    public Building getBuilding() {
       return building;
+   }
+   
+   public Factory getFactory(){
+      if (hasInfrastructure() && building is Factory){
+         return (Factory)building;
+      } else{
+         return null;
+      }
    }
    
    public Terrain getArea() {

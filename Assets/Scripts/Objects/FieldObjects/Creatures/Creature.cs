@@ -26,7 +26,7 @@ public class Creature : AFieldObject{
 
         strength      = cardReference.Atk;
         armor         = cardReference.Def;
-        attackEffects = cardReference.AttackEffects;
+        attackEffects = new List<AAttackEffect>(cardReference.AttackEffects);
         
         // Base-Movement is limited to 8 even if the lvl is higher
         movement = cardReference.getLevel(); 
@@ -174,6 +174,7 @@ public class Creature : AFieldObject{
     public void addAttackEffeckt(AAttackEffect effect){
         attackEffects.Add(effect);
     }
+    
     /// <summary> Removes the LAST occurence of that buff from the creature </summary>
     /// <param name="effect"></param>
     public void removeAttackEffeckt(AAttackEffect effect){

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ba26af4dde8b2249819e3f75d9f9237, type: 3}
-  m_Name: PoisonDagger
+  m_Name: PowerAxe
   m_EditorClassIdentifier: 
   id: 17
-  cardName: 
+  cardName: Power Axe
   cardText: 
   level: 0
-  limited: 2147483647
-  type: {fileID: 11400000, guid: b90ce6a139b16044d92c3dc15280acf5, type: 2}
-  attackBoost: 0
-  defenceBoost: 0
-  attackEffect: {fileID: 11400000, guid: cdeea15e1a4dc76449f1c93db40b4993, type: 2}
+  limited: 4
+  type: {fileID: 11400000, guid: c5b20130ac2a4794398fc364e59fa959, type: 2}
+  attackBoost: 1000
+  defenceBoost: 500
+  attackEffect: {fileID: 0}

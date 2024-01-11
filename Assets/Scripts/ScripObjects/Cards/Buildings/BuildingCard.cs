@@ -11,16 +11,18 @@ public class BuildingCard : AFieldCard {
 
    [Header("Building Stats")]
    [SerializeField] private int durability;
+   [SerializeField] protected List<AUpgradeEffect> upgradeEffects; 
 
-   public override bool placeCard(CardSlot cardSlot, bool forcePlace=false){
+   public override bool placeCard(CardSlot cardSlot){
       if (!cardSlot.fieldReference.hereCanBeBuild()){
          return false;
       } else{
+         Field targetField = cardSlot.fieldReference;
          GameObject instance = instanciateInstance();
          Building buildingInstance = instance.GetComponent<Building>();
          buildingInstance.initialize(cardSlot);
 
-         bool result = CardManager.Instance.spawnBuilding(cardSlot.fieldReference, buildingInstance);
+         bool result = targetField.spawnBuilding(buildingInstance);
 
          if (result){
             buildingInstance.name = "Building: " + cardName;
@@ -46,7 +48,6 @@ public class BuildingCard : AFieldCard {
    }
 
    //************************************************************************************************* Getter & Setters
-   public int getDurability() {
-      return durability;
-   }
+   public int Durability => durability;
+   public List<AUpgradeEffect> UpgradeEffects => upgradeEffects;
 }

@@ -9,7 +9,7 @@ public class FactoryCard: BuildingCard {
    
    [SerializeField] private List<Type> creatureWhitelist;
    [SerializeField] private List<Type> creatureBlacklist;
-
+   
    protected override GameObject instanciateInstance(){
       return Instantiate(CardManager.Instance.factoryTemplate, CardManager.Instance.spawnPos);
    }
@@ -17,4 +17,5 @@ public class FactoryCard: BuildingCard {
    //************************************************************************************************* Getter & Setters
    public List<Type> CreatureWhitelist => creatureWhitelist;
    public List<Type> CreatureBlacklist => creatureBlacklist;
+
 }

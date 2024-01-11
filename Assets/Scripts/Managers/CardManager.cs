@@ -54,13 +54,7 @@ public class CardManager : MonoBehaviour {
       }
    }
 
-   //*********************************************************************** Card Positioning
-   public bool spawnCreature(Field targetField, Creature creature, bool forceSpawn=false){
-      return targetField.spawnCreature(creature, forceSpawn);
-   }
-   public bool spawnBuilding(Field targetField, Building building, bool forceSpawn=false){
-      return targetField.spawnBuilding(building, forceSpawn);
-   }
+
    //*********************************************************************** Card Interactions
    public void initializeAttack(Field defenderField){
       Field attackerField = selectedField;

@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Avatar of Ice
   cardText: icy Fluff
   level: 0
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: 0eb04e85db798ae448731577d9a51d09, type: 2}
   classType: {fileID: 11400000, guid: 0429eddc727e2d443b15b730c43f610c, type: 2}

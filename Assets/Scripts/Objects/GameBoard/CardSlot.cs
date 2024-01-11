@@ -57,11 +57,11 @@ public class CardSlot : MonoBehaviour{
       }
    }
 
-   public void addEquipment(EquipableCard equipableCard){
-      equipableCard.equipCard(this);
-      cardAugmentations.Add(equipableCard);
+   public void equipCard(EquipableCard equipableCard){
+      if (equipableCard.equipCard(this)){
+         cardAugmentations.Add(equipableCard);
+      }
    }
-   
    
    public void removeEquipment(EquipableCard equipableCard){
       equipableCard.removeEffects(this);

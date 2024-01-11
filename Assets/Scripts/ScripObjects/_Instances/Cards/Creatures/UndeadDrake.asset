@@ -16,12 +16,12 @@ MonoBehaviour:
   cardName: Untoter Drache
   cardText: undead Fluff
   level: 0
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
-  creatureType: {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
-  classType: {fileID: 11400000, guid: 2040a881f2f659d4a986c1823612c705, type: 2}
-  attackType: {fileID: 11400000, guid: 88c50539a94f01e46bf7e6f4293b55f2, type: 2}
   atk: 100
   def: 100
   attackEffects: []
+  classType: {fileID: 11400000, guid: 2040a881f2f659d4a986c1823612c705, type: 2}
+  attackType: {fileID: 11400000, guid: 88c50539a94f01e46bf7e6f4293b55f2, type: 2}
+  creatureType: {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
   hybridType: {fileID: 11400000, guid: 7efcd23ba960fa648a8d208da4640532, type: 2}

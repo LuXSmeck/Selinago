@@ -16,12 +16,11 @@ MonoBehaviour:
   cardName: Meka
   cardText: Bli blub bli
   level: 5
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: 11d71481d15b9374188b5ac54d55e1a4, type: 2}
   classType: {fileID: 11400000, guid: c39b1f936b5d9834689941c531608d56, type: 2}
   attackType: {fileID: 11400000, guid: 66c23f7740b229b40af7be91e7e75d41, type: 2}
-  hp: 1000
   atk: 100
   def: 50
   attackEffects:

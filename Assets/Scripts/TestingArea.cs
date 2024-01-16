@@ -158,8 +158,8 @@ public class TestingArea : MonoBehaviour {
 
    }
 
-
-   [ContextMenu("RunTest_Equpiment")]
+    //------Chris was here!------
+   [ContextMenu("RunTest_Equipment")]
    public void testWeapons(){
       Debug.LogAssertion("***** Monster + Weapon ***** ");
       Debug.LogAssertion("Gobo takes 2 Weapons ");

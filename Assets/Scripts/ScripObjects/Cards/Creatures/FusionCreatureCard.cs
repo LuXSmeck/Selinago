@@ -11,22 +11,22 @@ public class FusionCreatureCard : CreatureCard{
     [SerializeField] private CreatureType hybridType;
     
     override 
-    public double checkWeakness(ElementType pAttackType){
+    public double checkWeakness(ElementType attackType){
         double dmgFactor = 1;
-        if (creatureType.elementalImmunities.Contains(pAttackType) || 
-            classType.elementalImmunities.Contains(pAttackType) || 
-            hybridType.elementalImmunities.Contains(pAttackType)){
+        if (creatureType.elementalImmunities.Contains(attackType) || 
+            classType.elementalImmunities.Contains(attackType) || 
+            hybridType.elementalImmunities.Contains(attackType)){
             dmgFactor /= 4;
         }
     
-        if (creatureType.elementalResistances.Contains(pAttackType) ||
-            classType.elementalResistances.Contains(pAttackType) ||
-            hybridType.elementalResistances.Contains(pAttackType)){
+        if (creatureType.elementalResistances.Contains(attackType) ||
+            classType.elementalResistances.Contains(attackType) ||
+            hybridType.elementalResistances.Contains(attackType)){
             dmgFactor /= 2;
         }
-        if (creatureType.elementalWeaknesses.Contains(pAttackType) || 
-            classType.elementalWeaknesses.Contains(pAttackType) || 
-            hybridType.elementalWeaknesses.Contains(pAttackType)){
+        if (creatureType.elementalWeaknesses.Contains(attackType) || 
+            classType.elementalWeaknesses.Contains(attackType) || 
+            hybridType.elementalWeaknesses.Contains(attackType)){
             dmgFactor *= 2;
         }
         return dmgFactor;

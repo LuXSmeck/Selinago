@@ -18,7 +18,7 @@ public abstract class Card : ScriptableObject{
    public Card(){
       id = ++idCounter;
       costs = level;
-      limited = int.MaxValue;
+      limited = 4;
    }
 
    public int getID(){

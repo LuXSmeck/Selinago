@@ -493,6 +493,10 @@ MonoBehaviour:
     type: 3}
   creatureTemplate: {fileID: 3548684019596955104, guid: 15948e775a243ad43943d52034b7b22f,
     type: 3}
+  buildingTemplate: {fileID: 4619948947100935672, guid: 32d32ebe9ff46444cb9e6c66765cc968,
+    type: 3}
+  factoryTemplate: {fileID: 5389895342717267073, guid: 50c0ecfcb64a32244a611be1b241048d,
+    type: 3}
   spawnPos: {fileID: 716637564}
 --- !u!114 &1931002930
 MonoBehaviour:
@@ -521,6 +525,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58c0c10e2accb1e4c9a8a8d0b24d6146, type: 2}
   - {fileID: 11400000, guid: 70ccf680b60a66b4da7233b115f453ba, type: 2}
   - {fileID: 11400000, guid: 95ab3b30cd7b44c42aef557ac239a83f, type: 2}
+  - {fileID: 11400000, guid: 716f41bf34d607b41b7744b8d28fca00, type: 2}
+  - {fileID: 11400000, guid: 12103f8bfbbbd284e8c86333e425e74a, type: 2}
+  - {fileID: 11400000, guid: a5890c9fa4263e940965987499a0b421, type: 2}
   equipmentCards:
   - {fileID: 11400000, guid: 708ac7fb1e61fce48a8d6b63b311c71d, type: 2}
+  - {fileID: 11400000, guid: 981be1117abe21f4fa910b536e1c38d7, type: 2}
+  - {fileID: 11400000, guid: 42a61594ffe60ef409bf4b894f5a21b1, type: 2}
+  - {fileID: 11400000, guid: 0d14b3a29b3ca1540b55943389ad2955, type: 2}
   decks: []

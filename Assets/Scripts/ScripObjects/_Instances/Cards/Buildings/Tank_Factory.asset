@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9e08d049444e8798ba530cfce06988, type: 3}
+  m_Name: Tank_Factory
+  m_EditorClassIdentifier: 
+  id: 16
+  cardName: Tank Factory
+  cardText: 
+  level: 0
+  limited: 2147483647
+  buildingModel: {fileID: 0}
+  durability: 0
+  creatureWhitelist:
+  - {fileID: 11400000, guid: c39b1f936b5d9834689941c531608d56, type: 2}
+  creatureBlacklist: []

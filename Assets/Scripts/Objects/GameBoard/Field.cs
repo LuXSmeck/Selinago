@@ -21,7 +21,6 @@ public class Field : MonoBehaviour {
       displayText = position.x + " : " + position.y;
 
       terrain = this.transform.GetComponentInChildren<Terrain>();
-      terrain.setPosition((int)position.x, (int)position.y);
 
       displayBackground.transform.parent.transform.position += new Vector3(fieldSize, fieldSize) * 0.5f;
 
@@ -35,7 +34,7 @@ public class Field : MonoBehaviour {
 
    public void display() {
       //DEBUG: Changes the color of the Debug-Text
-      Color textColor = Color.black;
+      Color textColor = Color.white;
       if (terrain.isBlocking()) {
          //displayBackground.GetComponent<Image>().color = Color.black;
          textColor = new Color(140f/255f, 75f/255f, 38f/255f, 1);
@@ -44,7 +43,7 @@ public class Field : MonoBehaviour {
          textColor = new Color(140f / 255f, 75f / 255f, 38f / 255f, 1);
       } else {
          if (creature != null && building != null) {
-            textColor = new Color(0.69f, 0.2f, 1f);
+            textColor = new Color(0.31f, 0.05f, 0.71f);
          } else if (creature != null) {
             textColor = Color.red;
          }else if (building != null) {
@@ -56,17 +55,22 @@ public class Field : MonoBehaviour {
       //DEBUG: Changes the color of the Debug-Background
       displayBackground.GetComponent<Image>().color = terrain.getTerrainColor();
    }
-
-   public void colorize(){
-      displayBackground.GetComponent<Image>().color = terrain.getTerrainColor();
-   }
    
+   //************************************************************************************************* highlights
    public void highlight(Color color) {
       displayBackground.GetComponent<Image>().color = color;
    }
+   
+   //************************************************************************************************* Spawn
+   public bool spawnBuilding(Building building, bool forceSpawn=false){
+      this.building = building;
+      Debug.Log("Card "+ building.getReference().name +" got successfully placed at "+ position.x +" "+ position.y);
+      display();
+      return true;
+   }
 
    //************************************************************************************************* Private
-
+   
    //************************************************************************************************* Getter & Setters
    public Vector2 getPosition() {
       return position;
@@ -91,6 +95,14 @@ public class Field : MonoBehaviour {
 
    public Building getBuilding() {
       return building;
+   }
+   
+   public Factory getFactory(){
+      if (hasInfrastructure() && building is Factory){
+         return (Factory)building;
+      } else{
+         return null;
+      }
    }
    
    public Terrain getArea() {

@@ -16,12 +16,11 @@ MonoBehaviour:
   cardName: Scorpio
   cardText: 
   level: 3
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: ffea9acc5e20abf46a8913abe74298de, type: 2}
   classType: {fileID: 11400000, guid: dcea875751e356548a1be5b18b45ef0b, type: 2}
   attackType: {fileID: 11400000, guid: 7ebb1eb4c397bb247aa191a304ead441, type: 2}
-  hp: 0
   atk: 100
   def: 10
   attackEffects:

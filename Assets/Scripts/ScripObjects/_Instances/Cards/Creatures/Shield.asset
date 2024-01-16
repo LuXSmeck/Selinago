@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Schield
   cardText: 
   level: 8
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: 11d71481d15b9374188b5ac54d55e1a4, type: 2}
   classType: {fileID: 11400000, guid: dcea875751e356548a1be5b18b45ef0b, type: 2}

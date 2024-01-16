@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba26af4dde8b2249819e3f75d9f9237, type: 3}
-  m_Name: PowerAxe
+  m_Script: {fileID: 11500000, guid: 1e52fe7b471740089191bd7fa7bcb426, type: 3}
+  m_Name: PiecingMonsters
   m_EditorClassIdentifier: 
-  cardName: Power Axe
-  cardText: 
-  cost: 4
-  UpgradableCardType: 1
-  type: {fileID: 11400000, guid: c5b20130ac2a4794398fc364e59fa959, type: 2}
+  effectName: 
+  description: Boostes the stats of spawning Creatures
+  type: 0
+  atkBoost: 0
+  defBoost: 0
+  bonusEffect: {fileID: 11400000, guid: 382b32e32671a7247aab2dc2b04eb6d8, type: 2}

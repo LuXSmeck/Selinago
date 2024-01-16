@@ -16,7 +16,7 @@ MonoBehaviour:
   cardName: Avatar of Fire
   cardText: burning Fluff
   level: 0
-  limited: 2147483647
+  limited: 4
   creatureModel: {fileID: 0}
   creatureType: {fileID: 11400000, guid: 0eb04e85db798ae448731577d9a51d09, type: 2}
   classType: {fileID: 11400000, guid: 6bf041d74be99df42a1e5ff84ae5a3dd, type: 2}

@@ -10,5 +10,4 @@ public abstract class PlacableCard : Card{
     /// <param name="targetPositionY"></param>
     public abstract bool placeCard(CardSlot cardSlot);
     public abstract void removeCard(CardSlot cardSlot);
-
 }

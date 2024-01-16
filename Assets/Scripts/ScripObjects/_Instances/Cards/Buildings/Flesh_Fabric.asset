@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9e08d049444e8798ba530cfce06988, type: 3}
+  m_Name: Flesh_Fabric
+  m_EditorClassIdentifier: 
+  id: 16
+  cardName: FleshFabric
+  cardText: 
+  level: 0
+  limited: 2147483647
+  buildingModel: {fileID: 0}
+  durability: 0
+  creatureWhitelist: []
+  creatureBlacklist:
+  - {fileID: 11400000, guid: 11d71481d15b9374188b5ac54d55e1a4, type: 2}
+  - {fileID: 11400000, guid: d26957cf7c26f1042ae82fb195e96ba3, type: 2}
+  - {fileID: 11400000, guid: 7eb0afc984a9d7c479cd0c7d6f671c9a, type: 2}
+  - {fileID: 11400000, guid: 7efcd23ba960fa648a8d208da4640532, type: 2}

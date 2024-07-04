@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using Objects.FieldObjects;
 using UnityEngine;
 
-//TODO Missing Operation to "pay" for building Creatures (or get reductions) 
 /// <summary> Building to spawn Creatures </summary>
 public class Factory : Building {
 
-   /// <summary> Factorys can have a White OR a Blacklist for building Creatures.
-   /// At least 1 of them MUST be empty! </summary>
    [SerializeField] private List<Type> creatureWhitelist;
    [SerializeField] private List<Type> creatureBlacklist;
    
@@ -20,10 +17,7 @@ public class Factory : Building {
       creatureBlacklist = new List<Type>(factoryCard.CreatureBlacklist);
    }
 
-   /// <summary> Some Factories offer some Effects for there Builds.
-   /// This method adds those to the finished Creature. </summary>
-   /// <param name="creature"></param>
-   public virtual void buildNewCreature(Creature creature){
+   public void buildNewCreature(Creature creature){
       foreach (AUpgradeEffect aEffect in upgradeEffects){
          if (aEffect is ConstructionBoostEffect){
             ConstructionBoostEffect effect = (ConstructionBoostEffect)aEffect;
@@ -37,7 +31,7 @@ public class Factory : Building {
    /// The Blacklist is only considered if the whitelist is empty. </summary>
    /// <param name="creatureCard"></param>
    /// <returns> TRUE if the creatureCard is compatible with this factory </returns>
-   public virtual bool checkCompatibility(CreatureCard creatureCard){
+   public bool checkCompatibility(CreatureCard creatureCard){
       bool result;
       if (creatureWhitelist.Count > 0){
          result = creatureCard.checkMyCompatibility(creatureWhitelist);

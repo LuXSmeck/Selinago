@@ -7,12 +7,13 @@ public class CardSlot : MonoBehaviour{
    [SerializeField] public Field fieldReference;
    [SerializeField] public PlacableCard cardReference;
    [SerializeField] public List<EquipableCard> cardAugmentations;
+   public int owner;
    
    /// <summary> Checks if the given Field is empty and calls then the placeCardMethod of the given card </summary>
    /// <param name="card"> A placable Card that stays in the active Slot </param>
    /// <param name="field"> The fieldreference to the specific Field </param>
    /// <returns> FALSE if the placement went wrong </returns>
-   public bool placeCard(PlacableCard card, Field field, bool forcePlay=false){
+   public virtual bool placeCard(PlacableCard card, Field field, bool forcePlay=false){
       if (cardReference != null){
          Debug.LogError("Cardslot already taken!");
          return false;
@@ -66,5 +67,9 @@ public class CardSlot : MonoBehaviour{
    public void removeEquipment(EquipableCard equipableCard){
       equipableCard.removeEffects(this);
       cardAugmentations.Remove(equipableCard);
+   }
+
+   public bool isAlliedSlot(CardSlot comparingSlot){
+      return owner == comparingSlot.owner;
    }
 }

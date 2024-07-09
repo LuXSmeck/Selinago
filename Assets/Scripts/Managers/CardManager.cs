@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour {
    public static CardManager Instance;
    private GameManager gameManager;
+   [SerializeField] private int[] players = {1,2};
 
    private const int DIMENSION = 15;
-   private const int SLOTS     = 30;
-   
+   private const int SLOTS     = 15;
+
    [Header("Fields")]
    [SerializeField] private FieldGrid grid;
    [SerializeField] private Field selectedField;
@@ -35,7 +38,7 @@ public class CardManager : MonoBehaviour {
       }
    }
         
-   public void initializeField(){
+   private void initializeField(){
       GameObject instance = Instantiate(gridTemplate, transform);
       grid = instance.GetComponentInChildren<FieldGrid>();
       grid.name = "Grid";
@@ -44,38 +47,52 @@ public class CardManager : MonoBehaviour {
         
       selectedField = grid.fields[0, 0];
    }
-   
-   public void initializeCardSlots(){
-      cardSlots = new CardSlot[SLOTS];
-      for (int i = 0; i < SLOTS; i++){
-         GameObject instance = Instantiate(cardSlotTemplate, CardManager.Instance.transform.Find("Slots").transform);
-         cardSlots[i] = instance.GetComponentInChildren<CardSlot>();
-         cardSlots[i].name = "Slot:" + i;
+
+   private void initializeCardSlots(){
+      cardSlots = new CardSlot[SLOTS*players.Length];
+
+      for (int i = 0; i < players.Length; i++){
+         for (int j = 0; j < SLOTS; j++){
+            GameObject instance = Instantiate(cardSlotTemplate, CardManager.Instance.transform.Find("Slots").transform);
+            cardSlots[j] = instance.GetComponentInChildren<CardSlot>();
+            cardSlots[j].name = "Slot:" + j;
+            cardSlots[j].owner = players[i];
+         }
       }
    }
 
 
    //*********************************************************************** Card Interactions
-   public void initializeAttack(Field defenderField){
-      Field attackerField = selectedField;
-      
-      int result = tryAttackingCreatureAt(attackerField, defenderField);
-      switch (result) {
-         case 0:  //"Fight is possible"
-                  Creature attacker = attackerField.getCreature();
-                  Creature defender = defenderField.getCreature();
-                  attacker.attack(defender);
-                  if (!defender.isDead()){
-                     revengeAttack(attackerField, defenderField);
-                  }
-                  break;
-         case 1:  Debug.Log("Fight is not possible: Target is out of Range");
-                  break;
-         default: Debug.Log("Fight is not possible);");
-                  break;
+   /// <summary> Initialization of an AttackSequence.
+   /// Includes all Checks and initialize a revengeAttack. </summary>
+   /// <param name="attackerField"></param>
+   /// <param name="defenderField"></param>
+   public void initializeAttack(Field attackerField, Field defenderField){
+      Creature attacker = attackerField.getCreature();
+      Creature defender = defenderField.getCreature();
+
+      //Check if the Attacker is eligible to attack.
+      if (attacker.isReady()){
+         //Checks if an attack is geographically possible
+         int result = tryAttackingCreatureAt(attackerField, defenderField);
+         switch (result) {
+            case 0:  //"Fight is possible"
+               attacker.attack(defender);
+               if (!defender.isDead()){
+                  revengeAttack(attackerField, defenderField);
+               }
+               break;
+            case 1:  Debug.Log("Fight is not possible: Target is out of Range");
+               break;
+            default: Debug.Log("Fight is not possible);");
+               break;
+         }
       }
    }
    
+   /// <summary> After a creature survived an Attack, a revenge might be possible. </summary>
+   /// <param name="oldAttackerField"> This is the Field from where the last Attack was started. </param>
+   /// <param name="oldDefenderField"> This is the Field where the last Attack targeted for. </param>
    private void revengeAttack(Field oldAttackerField, Field oldDefenderField){
       Field attackerField = oldDefenderField;
       Field defenderField = oldAttackerField;
@@ -93,8 +110,65 @@ public class CardManager : MonoBehaviour {
                   break;
       }
    }
+
+   public void initializeCapturing(Field targetField){
+      Creature attacker = targetField.getCreature();
+      Building building = targetField.getBuilding();
+
+      //TODO Check if both are not allied
+      if (attacker != null && building != null && 
+          attacker.isReady()){
+         attacker.captureBuilding(building);
+      }
+   }
    
+
+   /// <summary> Moves the Creature from the active Field and places itself on the target location.
+   /// There are no validation-checks at all! </summary>
+   /// <param name="targetPositionX"></param>
+   /// <param name="targetPositionY"></param>
+   public void confirmMovement(int targetPositionX, int targetPositionY) {
+      selectedField.getCreature().move(getFieldAt(targetPositionX, targetPositionY));
+   }
+
+   //************************************************************************************************* Getter & Setters
+   public void setSelectedField(int positionX, int positionY, bool highlighting = false) {
+      grid.resetHighlighting();
+      selectedField = grid.fields[positionX, positionY];
+      if (highlighting) {
+         grid.highlightPathPossibilities(selectedField);
+      }
+      grid.highlightField(selectedField, new Color(1f, 0f, 0.03f));
+   }
+
+   public void setSelectedField(CardSlot cardSlot, bool highlighting = false){
+      setSelectedField((int)cardSlot.fieldReference.getPosition().x, (int)cardSlot.fieldReference.getPosition().y, highlighting);
+   }
+
+   public void cancelAction() {
+      grid.resetHighlighting();
+   }
+
+   public void unselectField() {
+      selectedField = null;
+      grid.resetHighlighting();
+   }
    
+   public FieldGrid getFields(){
+      return grid;
+   }
+
+   public Field getFieldAt(int x, int y){
+      return grid.fields[x, y];
+   }
+
+   //************************************************************************************************* Privates
+
+   private int findPath(int positionX, int positionY) {
+      return grid.highlightShortestPath((int)selectedField.getPosition().x, (int)selectedField.getPosition().y, 
+                                         positionX, positionY);
+   }
+
    /// <summary> Checks if there is a creature in both given Fields and
    /// if the attacking Creature is able to attack the defending one. </summary>
    /// <param name="attackerField"> Field of the attacking Creature </param>
@@ -143,53 +217,6 @@ public class CardManager : MonoBehaviour {
          return 2;
       }
    }
-
-   /// <summary> Moves the Creature from the active Field and places itself on the target location.
-   /// There are no validation-checks at all! </summary>
-   /// <param name="targetPositionX"></param>
-   /// <param name="targetPositionY"></param>
-   public void confirmMovement(int targetPositionX, int targetPositionY) {
-      selectedField.getCreature().move(getFieldAt(targetPositionX, targetPositionY));
-   }
-
-   //************************************************************************************************* Getter & Setters
-   public void setSelectedField(int positionX, int positionY, bool highlighting = false) {
-      grid.resetHighlighting();
-      selectedField = grid.fields[positionX, positionY];
-      if (highlighting) {
-         grid.highlightPathPossibilities(selectedField);
-      }
-      grid.highlightField(selectedField, new Color(1f, 0f, 0.03f));
-   }
-
-   public void setSelectedField(CardSlot cardSlot, bool highlighting = false){
-      setSelectedField((int)cardSlot.fieldReference.getPosition().x, (int)cardSlot.fieldReference.getPosition().y, highlighting);
-   }
-
-   public void cancelAction() {
-      grid.resetHighlighting();
-   }
-
-   public void unselectField() {
-      selectedField = null;
-      grid.resetHighlighting();
-   }
-   
-   public FieldGrid getFields(){
-      return grid;
-   }
-
-   public Field getFieldAt(int x, int y){
-      return grid.fields[x, y];
-   }
-
-   //************************************************************************************************* Privates
-
-   private int findPath(int positionX, int positionY) {
-      return grid.highlightShortestPath((int)selectedField.getPosition().x, (int)selectedField.getPosition().y, 
-                                         positionX, positionY);
-   }
-
    //************************************************************************************************* Obsolete
 
    // /// <summary> Changes the TerrainFeature of the given Position, but ignores conflicts with existing entities.

@@ -4,32 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary> SpecialCreatures are the Bosses of the Game. </summary>
 [CreateAssetMenu(menuName = "Cards/Creatures/Special", fileName = "Creature")]
-public class SpecialCreatureCard : CreatureCard{
+public class SpecialCreatureCard : HybridCard{
     
-    [Header("Hybrid Attributes")]
-    [SerializeField] private CreatureType hybridType;
-    
-    override 
-    public double checkWeakness(ElementType attackType){
-        double dmgFactor = 1;
-        if (creatureType.elementalImmunities.Contains(attackType) || 
-            classType.elementalImmunities.Contains(attackType) || 
-            hybridType.elementalImmunities.Contains(attackType)){
-            dmgFactor /= 4;
-        }
-    
-        if (creatureType.elementalResistances.Contains(attackType) ||
-            classType.elementalResistances.Contains(attackType) ||
-            hybridType.elementalResistances.Contains(attackType)){
-            dmgFactor /= 2;
-        }
-        if (creatureType.elementalWeaknesses.Contains(attackType) || 
-            classType.elementalWeaknesses.Contains(attackType) || 
-            hybridType.elementalWeaknesses.Contains(attackType)){
-            dmgFactor *= 2;
-        }
-        return dmgFactor;
-    }
-    
+   public override bool placeCard(CardSlot cardSlot){
+      Field targetField = cardSlot.fieldReference;
+      Factory factory = targetField.getFactory();
+      if (cardSlot is SpecialCardSlot && factory is HQ){
+         spawnCreature(cardSlot, targetField, factory);
+         return true;
+      }else{
+         Debug.LogError("Bosses have to be spawned in Base!");
+         return false;
+      }
+   }
+
 }

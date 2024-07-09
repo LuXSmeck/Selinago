@@ -91,6 +91,7 @@ public class Creature : AFieldObject{
 
         if (attackSequence){
             enemy.takeDamage(damage, this);
+            increaseStun();
         }
     }
 
@@ -118,6 +119,16 @@ public class Creature : AFieldObject{
         state = CreatureStateEnum.DEAD;
         Debug.Log(cardReference.getName() +" failted");
         cardSlot.removeCard();
+    }
+
+    public void captureBuilding(Building building){
+        Debug.Log(cardReference.getName() +" is capturing "+ building.getReference().getName());
+
+        int dmg = 50; 
+        
+        //TODO this value could be modified in a later version.
+        building.takeDamage(dmg);
+        increaseStun();
     }
     
     //************************************************************** private Methods
@@ -147,6 +158,10 @@ public class Creature : AFieldObject{
     
     public bool isDead(){
         return state == CreatureStateEnum.DEAD;
+    }
+
+    public bool isReady(){
+        return state == CreatureStateEnum.READY;
     }
 
     /// <summary> This Setter is used to simulate DAMAGE. Don't use it do modify STR in any other Situation! </summary>

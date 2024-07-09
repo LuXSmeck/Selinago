@@ -19,15 +19,13 @@ public class CreatureCard : PlacableCard {
    [Header("Creature Attributes")]
    [Tooltip("Defines the Class or Subspecies of the Creature, like Fish or Soldier")]
    [SerializeField] protected SubType classType;
-   [Tooltip("Defines the Element whith which the Creature attacks")]
+   [Tooltip("Defines the Element with which the Creature attacks")]
    [SerializeField] private ElementType attackType;
    [Tooltip("Defines the SpeciesType of the Creature, like Humanoid or Undead")]
    [SerializeField] protected CreatureType creatureType;
 
-   /// <summary>
-   ///     Checks how many damage an Attack of the given Type would do,
-   ///     and Returns the calculated factor.
-   /// </summary>
+   /// <summary> Checks how many damage an Attack of the given Type would do,
+   ///     and Returns the calculated factor. </summary>
    /// <param name="attackType"> ElementType of the incoming Attack </param>
    /// <returns> Double DamageFactor (1 = 100%) </returns>
    public virtual double checkWeakness(ElementType attackType) {
@@ -48,10 +46,14 @@ public class CreatureCard : PlacableCard {
       return dmgFactor;
    }
    
+   /// <summary> Forward called from a placable Cardslot!
+   /// Checks if the Creature can be spawned here and does so if possible. </summary>
+   /// <param name="cardSlot"></param>
+   /// <returns> FALSE if the creature can't be spawned in the Target location. </returns>
    public override bool placeCard(CardSlot cardSlot){
       Field targetField = cardSlot.fieldReference;
       Factory factory = targetField.getFactory();
-      if (!targetField.isApproachable() || 
+      if (!targetField.isApproachable() || cardSlot is SpecialCardSlot ||
           factory == null || !factory.checkCompatibility(this)){
          Debug.LogError("field is not Approachable!");
          return false;
@@ -62,24 +64,17 @@ public class CreatureCard : PlacableCard {
       }
    }
 
-   public bool forcePlaceCard(CardSlot cardSlot){
-      Field targetField = cardSlot.fieldReference;
-      if (targetField.isApproachable()){
-         spawnCreature(cardSlot, cardSlot.fieldReference, null);
-         return true;
-      } else{
-         return false;
-      }
-   }
-
-   private void spawnCreature(CardSlot cardSlot, Field targetField, Factory factory){
+   /// <summary> Initialize the Spawning of the new Creature and sets all links.
+   /// There are no more checks for Compability or NullPointers of parameters </summary>
+   /// <param name="cardSlot"></param>
+   /// <param name="targetField"></param>
+   /// <param name="factory"></param>
+   protected void spawnCreature(CardSlot cardSlot, Field targetField, Factory factory){
       GameObject instance = instanciateInstance();
       Creature creatureInstance = instance.GetComponent<Creature>();
+      
       creatureInstance.initialize(cardSlot);
-
-      if (factory != null){
-         factory.buildNewCreature(creatureInstance);
-      }
+      factory.buildNewCreature(creatureInstance);
       targetField.setCreature(creatureInstance);
          
       creatureInstance.name = "Creature: " + cardName;
@@ -96,9 +91,27 @@ public class CreatureCard : PlacableCard {
       return Instantiate(CardManager.Instance.creatureTemplate, CardManager.Instance.spawnPos);
    }
 
+   /// <summary> Checks if the Creature 
+   /// </summary>
+   /// <param name="checkList"></param>
+   /// <returns></returns>
    public virtual bool checkMyCompatibility(List<Type> checkList){
       bool result = checkList.Contains(creatureType) ||
                     checkList.Contains(classType);
+
+      return result;
+   }
+   
+   public virtual bool checkMyCompatibility(SubType pClassType, CreatureType pCreatureType){
+      bool result = classType == pClassType ||
+                    creatureType == pCreatureType;
+
+      return result;
+   }
+   public virtual bool checkMyCompatibility(SubType pClassType, ElementType pAttackType, CreatureType pCreatureType){
+      bool result = classType == pClassType ||
+                    attackType == pAttackType ||
+                    creatureType == pCreatureType;
 
       return result;
    }

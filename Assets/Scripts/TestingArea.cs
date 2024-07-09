@@ -107,9 +107,10 @@ public class TestingArea : MonoBehaviour {
    public void testFighting() {
       Debug.LogAssertion("***** Fight ***** ");
       cardManager.setSelectedField(cardManager.cardSlots[myCardSlotId]);
+      Field attackerField = cardManager.cardSlots[myCardSlotId].fieldReference;
       Field defendingField = cardManager.cardSlots[targetCardSlotId].fieldReference;
       
-      cardManager.initializeAttack(defendingField);
+      cardManager.initializeAttack(attackerField, defendingField);
    }
 
    
@@ -129,17 +130,18 @@ public class TestingArea : MonoBehaviour {
       cardManager.setSelectedField(cardManager.cardSlots[10]);
       
       Debug.LogAssertion("Attacking an Enemy with strong DEF No STR with Piece AND Deadly");
+      Field attackerField = cardManager.cardSlots[10].fieldReference;
       Field defendingField = cardManager.cardSlots[11].fieldReference;
-      cardManager.initializeAttack(defendingField);
+      cardManager.initializeAttack(attackerField, defendingField);
       
       Debug.LogAssertion("Attacking an Enemy with no DEF with Piece AND Deadly");
       defendingField = cardManager.cardSlots[12].fieldReference;
-      cardManager.initializeAttack(defendingField);
+      cardManager.initializeAttack(attackerField, defendingField);
       
       
       Debug.LogAssertion("Attacking an Enemy with strong DEF with Piece AND Deadly");
       defendingField = cardManager.cardSlots[13].fieldReference;
-      cardManager.initializeAttack(defendingField);
+      cardManager.initializeAttack(attackerField, defendingField);
 
    }
 

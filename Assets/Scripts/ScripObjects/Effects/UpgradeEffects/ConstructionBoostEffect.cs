@@ -12,6 +12,7 @@ public class ConstructionBoostEffect : AUpgradeEffect{
 
    
    public ConstructionBoostEffect(){
+      type = UpgradeEffectTypeEnum.FACTORY;
       description = "Boostes the stats of spawning Creatures";
    }
 

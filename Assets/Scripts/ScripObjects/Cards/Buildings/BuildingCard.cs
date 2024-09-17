@@ -10,7 +10,8 @@ public class BuildingCard : AFieldCard {
    [SerializeField] private GameObject buildingModel;
 
    [Header("Building Stats")]
-   [SerializeField] private int durability;
+   [SerializeField] private int durability = 0;
+   [SerializeField] private int energyGeneration = 0;
    [SerializeField] protected List<AUpgradeEffect> upgradeEffects; 
 
    public override bool placeCard(CardSlot cardSlot){

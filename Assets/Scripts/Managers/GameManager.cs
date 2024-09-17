@@ -7,10 +7,9 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour{
     public static GameManager Instance;
-    
-    [Header("Templates")]
-    public GameObject player1;
-    public GameObject player2;
+
+    [Header("Templates")] 
+    public Player[] players;
     
     [Header("Constants")] 
     [SerializeField] private int mainDeckMincards  = 10;
@@ -47,6 +46,9 @@ public class GameManager : MonoBehaviour{
         cardLimitations["SideDeck_MinCards"] = sideDeckMincards;
         cardLimitations["SideDeck_MaxCards"] = sideDeckMaxcards;
         cardLimitations["SideDeck_Doubles"]  = sideDeckDoubles;
+
+        players[0] = new Player("Player1");
+        players[1] = new Player("Player2");
     }
 
     public Dictionary<string, int> CardLimitations => cardLimitations;

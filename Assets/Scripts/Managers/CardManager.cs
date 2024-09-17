@@ -6,7 +6,6 @@ using UnityEngine;
 public class CardManager : MonoBehaviour {
    public static CardManager Instance;
    private GameManager gameManager;
-   [SerializeField] private int[] players = {1,2};
 
    private const int DIMENSION = 15;
    private const int SLOTS     = 15;
@@ -49,6 +48,7 @@ public class CardManager : MonoBehaviour {
    }
 
    private void initializeCardSlots(){
+      Player[] players = gameManager.players;
       cardSlots = new CardSlot[SLOTS*players.Length];
 
       for (int i = 0; i < players.Length; i++){

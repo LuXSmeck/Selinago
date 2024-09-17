@@ -12,7 +12,7 @@ public class Building : AFieldObject {
 
    [Header("Building Attributes")]
    [SerializeField] private int durability;
-
+   
    [Header("Creature Effects")]
    [SerializeField] protected List<AUpgradeEffect> upgradeEffects;
 
@@ -25,10 +25,6 @@ public class Building : AFieldObject {
       durability = cardReference.Durability;
    }
 
-   public void destroy(){
-      Destroy(this);
-   }
-
    //************************************************************** Fighting Methods
    public void increaseDurability(int boost){
       durability += boost;
@@ -37,16 +33,17 @@ public class Building : AFieldObject {
    public void takeDamage(int damage) {
       durability -= damage;
       if (durability <= 0) {
-         destroyed();
+         iniDestroySequence();
       }
    }
-
-   //************************************************************** private Methods
-   private void destroyed() {
+   
+   public override void iniDestroySequence() {
       Debug.Log(cardReference.getName() +" got destroyed");
       cardSlot.removeCard();
    }
 
+   //************************************************************** private Methods
+   
    //************************************************************************************************* Getter & Setters
    public override PlacableCard getReference() {
       return cardReference;

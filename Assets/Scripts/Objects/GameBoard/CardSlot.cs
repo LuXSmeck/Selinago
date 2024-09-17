@@ -7,7 +7,7 @@ public class CardSlot : MonoBehaviour{
    [SerializeField] public Field fieldReference;
    [SerializeField] public PlacableCard cardReference;
    [SerializeField] public List<EquipableCard> cardAugmentations;
-   public int owner;
+   public Player owner;
    
    /// <summary> Checks if the given Field is empty and calls then the placeCardMethod of the given card </summary>
    /// <param name="card"> A placable Card that stays in the active Slot </param>
